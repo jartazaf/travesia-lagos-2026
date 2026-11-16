@@ -1,38 +1,32 @@
-# Travesía Lagos & Andes 2026
+# Viaje en moto · 25 nov. a 11 dic. 2026
 
-Sitio personal e independiente para compartir el viaje en moto **25 de noviembre a 11 de diciembre de 2026** por Chile y Argentina.
+Sitio personal para consultar y compartir el calendario, itinerario, mapa y bitácora del viaje. Publicado con GitHub Pages.
 
-## Qué contiene
-- **Mapa interactivo**: bases y recorrido esquemático; no es una certificación de pavimento ni navegación GPS.
-- **Itinerario de 17 jornadas**: salida, llegada, visitas, distancias aproximadas, enlaces a Google Maps y alertas.
-- **Calendario de alojamientos**: llegada, salida, lugar, noches, principales visitas y estado de reserva.
-- **Bitácora compartida**: entradas publicadas en `journal-data.js`.
-- **Cuaderno local**: notas que pueden guardarse sin conexión en el navegador y exportarse como JSON; **no se sincronizan** ni aparecen públicamente hasta publicarse en GitHub.
-- **Logística**: barcaza, ripio de Hua Hum, autonomía de 14 litros y límite diario de kilómetros.
+**Web:** https://jartazaf.github.io/travesia-lagos-2026/
 
-## Cómo cambiar el viaje
-- Edita `route-data.js` para cambiar días, kilometrajes estimados, visitas, bases, fechas o estado de reserva.
-- Para publicar crónicas en la bitácora, edita `journal-data.js` con entradas del formato:
-```js
-window.TRIP_JOURNAL = [
-  {day:1,title:"Primer día",text:"Nuestro relato del viaje",photo:"https://ejemplo.com/foto.jpg"}
-];
-```
-- El cuaderno de viaje guarda **borradores solo en el navegador utilizado**; pulsa «Exportar JSON» y conserva el archivo. Cuando lo subas aquí o lo adjuntes en ChatGPT podremos convertir las entradas en bitácora pública.
-- `index.html`: estructura y estética del sitio.
-- `site-extras.js`: renderiza calendario y bitácora.
+## Contenido
 
-## Publicación
-El repositorio se llama actualmente `jartazaf/travesia-lagos-2026.` (incluye un punto final). Si quieres una URL más limpia, renómbralo en **Settings → General → Repository name** como `travesia-lagos-2026`.
-Para habilitar publicación gratuita: **Settings → Pages → Deploy from a branch → main → /(root) → Save**.
-La dirección pública exacta aparecerá en la misma pantalla de GitHub Pages cuando se haya desplegado correctamente.
+- **Calendario:** llegada, salida, localidad, noches, visitas y estado de reserva.
+- **Día a día:** 17 jornadas, recorridos y distancias estimadas; tocar la jornada para ver detalles.
+- **Mapa:** bases y puntos principales; las líneas son esquemáticas, no navegación GPS.
+- **Bitácora:** notas públicas en `journal-data.js`. El formulario web permite guardar borradores *solo en el navegador* y exportarlos a JSON. No existe sincronización automática.
 
-## Seguridad y fuentes
-No publiques domicilios particulares, teléfonos, documentos, números de reservas ni información privada en archivos del repositorio: es público.
-La ruta por **Hua Hum** tiene sectores de ripio; la conexión exacta a Maihue está pendiente de validar. El día **4 de diciembre**, Bariloche–Futrono, puede superar 350 km y requiere una decisión final antes de reservar.
-- [Barcaza Hua Hum](https://barcazahuahum.com/es/horarios-tarifas/)
-- [Paso Cardenal Samoré](https://www.pasosfronterizos.gov.cl/complejos-fronterizos/loslagos/paso-cardenal-samore/)
-- [Parque Nacional Puyehue (CONAF)](https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/)
-- [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+## Edición
 
-> No se han confirmado reservas de alojamiento ni de la barcaza. Reconfirmar horarios, pavimento y combustible antes de viajar.
+- `route-data.js`: datos de las 17 jornadas, bases, alojamientos, fechas, visitas y estado.
+- `journal-data.js`: entradas de la bitácora que verán todas las personas que visiten la web.
+- `index.html`: interfaz y funcionamiento del sitio.
+- `site-extras.js`: archivo legado no utilizado por el sitio actual.
+
+Un cambio subido a `main` vuelve a publicar el sitio mediante GitHub Pages.
+
+## Pendientes
+
+- Hua Hum contiene ripio: resolver excepción a la condición de viajar solo por pavimento.
+- Confirmar acceso completamente pavimentado al sector elegido del Lago Maihue.
+- Verificar distancia del 4 de diciembre Bariloche → Futrono, que podría superar 350 km.
+- Reservar alojamientos; objetivo máximo US$45 por noche por habitación privada.
+
+## Privacidad
+
+El repositorio y el sitio son públicos. No subir direcciones privadas, teléfonos, documentos ni números de reserva.
