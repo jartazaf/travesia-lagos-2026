@@ -114,4 +114,5 @@ async function loadWeather(force=false){
 }
 document.addEventListener("trip-weather-open",()=>loadWeather());
 $("weather-reload")?.addEventListener("click",()=>loadWeather(true));
+if($("weather-panel") && !$("weather-panel").hidden)loadWeather();
 })();
