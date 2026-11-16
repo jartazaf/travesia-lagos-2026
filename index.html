@@ -46,7 +46,7 @@ h1{font-size:26px;letter-spacing:-.7px;line-height:1.15;margin:0 0 7px;color:#ff
 .notice summary::after{content:"＋";font-size:16px;font-weight:400}
 .notice[open] summary::after{content:"−"}
 .notice p{margin:9px 0 0;line-height:1.6}
-.section-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#e5f1ec;border:1px solid #d3e6df;border-radius:12px;padding:5px;margin-bottom:14px}
+.section-switch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:#e5f1ec;border:1px solid #d3e6df;border-radius:12px;padding:5px;margin-bottom:14px}
 .switch{border:0;border-radius:8px;padding:11px 10px;background:transparent;color:#41695e;font-size:13px;font-weight:750}
 .switch.active{color:var(--forest);background:#fff;box-shadow:0 2px 9px rgba(19,77,60,.10)}
 .switch:hover:not(.active){background:#d6ebe3}
@@ -115,6 +115,38 @@ footer a{font-weight:650}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.row summary,.row summary:after{transition:none}}
 
+
+/* Pronóstico integrado: una fila por alojamiento, detalle diario al estar disponible. */
+.weather-help{font-size:12px;color:var(--muted);margin:0;padding:11px 20px 12px;border-bottom:1px solid var(--border)}
+.weather-reload{border:1px solid #b7dfd3;background:#e6f6ef;border-radius:8px;padding:7px 11px;font-size:12px;font-weight:750;color:var(--forest)}
+.weather-reload:hover{background:#d4efe5}
+.weather-stay{border-bottom:1px solid var(--border);padding:13px 19px}
+.weather-stay:last-child{border-bottom:0}
+.weather-stay-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:3px}
+.weather-stay-top span{font-size:13px;font-weight:750;color:var(--forest)}
+.weather-stay-top small{font-size:11px;color:var(--muted);text-align:right}
+.weather-days{display:grid;gap:7px;margin-top:10px}
+.weather-day{display:grid;grid-template-columns:minmax(120px,1.1fr) 90px 95px minmax(145px,1fr);align-items:center;gap:10px;border:1px solid #e0eee8;border-radius:9px;background:#f6fbf8;padding:9px 12px;font-size:11px}
+.weather-day .weather-when{font-weight:700;font-size:12px}
+.weather-day .weather-when small{display:block;font-weight:400;color:var(--muted);font-size:10px}
+.weather-day strong{color:var(--forest);font-size:13px}
+.weather-day span{color:#416f65;font-size:11px}
+.weather-day.unavailable{grid-template-columns:120px 1fr;background:#fafcfb;color:var(--muted)}
+.weather-pending{padding:11px 0 1px;color:var(--muted);font-size:12px;line-height:1.55}
+#weather-list>.weather-pending{padding:16px 20px}
+@media(max-width:650px){
+.weather-help{padding:10px 13px;font-size:11px}
+.weather-stay{padding:12px 13px}
+.weather-stay-top{align-items:flex-start}
+.weather-stay-top small{max-width:150px}
+.weather-day{grid-template-columns:minmax(0,1fr) minmax(75px,auto);gap:4px 10px;padding:9px 11px}
+.weather-day .weather-when{grid-column:1}
+.weather-day strong{grid-column:2;text-align:right}
+.weather-day span{font-size:10px}
+.weather-day span:last-child{text-align:right}
+.weather-day.unavailable{grid-template-columns:65px 1fr}
+}
+
 </style>
 </head>
 <body>
@@ -139,6 +171,7 @@ footer a{font-weight:650}
   <div class="section-switch" role="tablist" aria-label="Vista del viaje">
     <button type="button" class="switch active" id="tab-stays" role="tab" aria-controls="stays-panel" aria-selected="true">Alojamientos</button>
     <button type="button" class="switch" id="tab-days" role="tab" aria-controls="days-panel" aria-selected="false">Día a día</button>
+    <button type="button" class="switch" id="tab-weather" role="tab" aria-controls="weather-panel" aria-selected="false">Clima</button>
   </div>
   <section class="content" id="stays-panel" role="tabpanel" aria-labelledby="tab-stays">
     <div class="content-head"><h2>Dónde dormimos</h2><p>Llegada y salida · detalle al seleccionar</p></div>
@@ -149,6 +182,15 @@ footer a{font-weight:650}
     <div class="content-head"><h2>Recorrido diario</h2><p>17 jornadas · visitas y enlaces de ruta</p></div>
     <div id="day-list"></div>
     <div class="content-foot">Las distancias son estimadas. Los enlaces abren Google Maps, donde debe revisarse el pavimento y el recorrido antes de salir. La navegación por barcaza no aparece como ruta terrestre.</div>
+  </section>
+  <section class="content" id="weather-panel" role="tabpanel" aria-labelledby="tab-weather" hidden>
+    <div class="content-head"><h2>Clima por destino</h2><button type="button" id="weather-reload" class="weather-reload">Actualizar</button></div>
+    <p class="weather-help">Pronóstico para las fechas de estadía. Temperaturas mínima/máxima, probabilidad de lluvia, viento máximo y ráfagas.</p>
+    <div id="weather-list" aria-live="polite"><p class="weather-pending">Selecciona Clima para consultar los pronósticos.</p></div>
+    <div class="content-foot">
+      <span id="weather-updated">Datos disponibles únicamente cuando las fechas están dentro de los próximos 16 días.</span><br>
+      Fuente: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> · CC BY 4.0. Pronósticos orientativos, sujetos a cambios. Revisar condiciones viales y pasos fronterizos por separado.
+    </div>
   </section>
 </main>
 <footer><div class="wrap">Datos editables en <a href="https://github.com/jartazaf/travesia-lagos-2026" target="_blank" rel="noopener noreferrer">GitHub</a> · Itinerario en planificación.</div></footer>
@@ -162,7 +204,7 @@ footer a{font-weight:650}
   if(!trip){$("stay-list").textContent="No se pudieron cargar los datos del viaje.";return}
   const nights=trip.stays.reduce((sum,s)=>sum+Number(s.nights||0),0);
   $("summary").innerHTML=[trip.days.length+" días",nights+" noches",trip.stays.length+" bases de alojamiento","2 países"].map(s=>"<span class='pill'><b>"+esc(s)+"</b></span>").join("");
-  const tabs=[["stays","stays-panel","tab-stays"],["days","days-panel","tab-days"]];
+  const tabs=[["stays","stays-panel","tab-stays"],["days","days-panel","tab-days"],["weather","weather-panel","tab-weather"]];
   function selectTab(id,save){
     tabs.forEach(([name,panel,tab])=>{
       const on=name===id;
@@ -170,6 +212,7 @@ footer a{font-weight:650}
       $(tab).setAttribute("aria-selected",String(on));
       $(tab).tabIndex=on?0:-1;
     });
+    if(id==="weather")document.dispatchEvent(new Event("trip-weather-open"));
     if(save)history.replaceState(null,"","#"+id);
   }
   tabs.forEach(([id,panel,tab],i)=>{
@@ -180,8 +223,8 @@ footer a{font-weight:650}
       selectTab(tabs[next][0],true);$(tabs[next][2]).focus();
     });
   });
-  const hash=location.hash.slice(1);selectTab(hash==="days"?"days":"stays",false);
-  window.addEventListener("hashchange",()=>selectTab(location.hash.slice(1)==="days"?"days":"stays",false));
+  const hash=location.hash.slice(1);selectTab(["stays","days","weather"].includes(hash)?hash:"stays",false);
+  window.addEventListener("hashchange",()=>{const name=location.hash.slice(1);selectTab(["stays","days","weather"].includes(name)?name:"stays",false)});
   const mapSearch=s=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(s);
   const directions=points=>{
     const q=new URLSearchParams({api:"1",origin:points[0],destination:points[points.length-1],travelmode:"driving"});
@@ -221,5 +264,6 @@ footer a{font-weight:650}
   });
 })();
 </script>
+<script src="./weather.js?v=1"></script>
 </body>
 </html>
