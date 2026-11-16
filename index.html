@@ -194,7 +194,7 @@ footer a{font-weight:650}
   </section>
 </main>
 <footer><div class="wrap">Datos editables en <a href="https://github.com/jartazaf/travesia-lagos-2026" target="_blank" rel="noopener noreferrer">GitHub</a> · Itinerario en planificación.</div></footer>
-<script src="./route-data.js?v=6"></script>
+<script src="./route-data.js?v=7"></script>
 <script>
 (function(){
   "use strict";
@@ -252,6 +252,7 @@ footer a{font-weight:650}
     "<div class='details'><p><span class='label'>Visitas:</span> "+esc(d.visits)+"</p>"+
     (d.desc?"<p class='desc'>"+esc(d.desc)+"</p>":"")+
     (d.flag?"<p class='danger'>Tramo pendiente de revisión</p>":"")+
+    (d.optionalStop?"<p class='danger'>"+esc(d.optionalStop.warning)+"</p><p><a class='action' target='_blank' rel='noopener noreferrer' href='"+esc(mapSearch(d.optionalStop.name+", "+d.optionalStop.country))+"'>Ver "+esc(d.optionalStop.name)+" en Google Maps ↗</a></p><p class='desc'>Información vial: <a target='_blank' rel='noopener noreferrer' href='"+esc(d.optionalStop.roadInfoUrl)+"'>Vialidad de Neuquén ↗</a></p>":"")+
     "<p><a class='action' target='_blank' rel='noopener noreferrer' href='"+esc(routeLink)+"'>"+(d.travel?"Abrir ruta terrestre":"Ver lugar")+" en Google Maps ↗</a></p>"+
     (ferry?"<p class='desc'>La barcaza Puerto Fuy–Puerto Pirehueico no está incluida en este enlace vial.</p>":"")+
     "</div></details>";
