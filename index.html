@@ -2,383 +2,449 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#123e34">
-<meta name="description" content="Itinerario del viaje en moto por Chile y Argentina, del 25 de noviembre al 11 de diciembre de 2026. Alojamientos, recorrido diario y clima.">
-<title>Viaje en moto 2026 · Itinerario</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#103d32">
+<meta name="description" content="Itinerario del viaje en moto del 25 de noviembre al 11 de diciembre de 2026: recorrido por Chile y Argentina, alojamientos y clima.">
+<title>Ruta 2026 · Itinerario en moto</title>
 <style>
 :root{
-  color-scheme:light;--forest:#123e34;--forest-dark:#0c2e27;--forest-light:#1a594b;
-  --lake:#129c91;--lake-light:#dcf5ee;--snow:#f4f8f6;--white:#fff;
-  --ink:#192e28;--muted:#60766e;--line:#dce8e2;--line-light:#eaf1ed;
-  --amber:#8a5a16;--amber-bg:#fff9eb;--shadow:0 14px 40px rgba(20,55,41,.05)
+ --pine:#103d32;--pine-deep:#082b24;--pine-mid:#165649;--aqua:#33c4b2;
+ --aqua-dark:#0b8177;--aqua-pale:#e4f5ef;--snow:#f4f7f4;--white:#ffffff;
+ --ink:#172e27;--muted:#71867c;--line:#dce8e0;--line-soft:#edf2ed;
+ --warning:#946318;--warning-bg:#fff7e8;--soft-shadow:0 14px 42px rgba(14,55,40,.055)
 }
 *{box-sizing:border-box}
 html{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;min-width:320px;background:var(--snow);color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
-button{font:inherit;cursor:pointer}
-a{color:#08786d;text-decoration:none}
-a:hover{text-decoration:underline}
-button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--lake);outline-offset:3px}
+body{margin:0;background:var(--snow);color:var(--ink);min-width:320px;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer}a{color:#0a796c;text-decoration:none}a:hover{text-decoration:underline}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #29bea9;outline-offset:3px}
+button:disabled{cursor:not-allowed;opacity:.38}
 [hidden]{display:none!important}
-.wrap{width:min(calc(100% - 48px),1180px);margin-inline:auto}
-.topbar{background:#fff;border-bottom:1px solid var(--line)}
-.topbar-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}
-.brand-symbol{flex:none;width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:var(--forest);color:#c5fff2}
-.brand-symbol svg{width:23px;height:23px}
-.brand-copy{display:grid;gap:1px;line-height:1.2}
-.brand-copy strong{font-size:14px;letter-spacing:-.025em;color:var(--forest)}
-.brand-copy small{font-size:11px;color:var(--muted);font-weight:550}
-.header-actions{display:flex;align-items:center;gap:18px}
-.header-meta{font-size:11px;letter-spacing:.065em;font-weight:750;color:#688278;text-transform:uppercase}
-.share{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;border:1px solid #c6ddd2;border-radius:10px;color:var(--forest);font-size:12px;font-weight:750;background:#f4faf7;transition:background .15s,border-color .15s}
-.share:hover{background:#e5f5ee;border-color:#9ecfc2}
-.share svg{width:15px;height:15px}
-main{padding-top:28px;padding-bottom:30px}
-.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;background:linear-gradient(112deg,#0c3028 0%,#164f43 62%,#156e66 130%);color:white;border-radius:20px;padding:33px 38px;min-height:188px;box-shadow:0 16px 34px rgba(16,63,50,.105)}
-.hero::before,.hero::after{content:"";position:absolute;z-index:-1;pointer-events:none;border:1px solid rgba(196,255,239,.13);border-radius:50%}
-.hero::before{width:410px;height:410px;right:-112px;top:-249px;box-shadow:0 0 0 56px rgba(196,255,239,.035),0 0 0 116px rgba(196,255,239,.028)}
-.hero::after{width:160px;height:160px;right:148px;bottom:-146px}
-.hero-label{display:block;color:#93dace;font-size:10px;font-weight:850;letter-spacing:.16em;margin-bottom:11px;text-transform:uppercase}
-h1{margin:0;font-size:clamp(27px,3.2vw,39px);line-height:1.15;letter-spacing:-.055em;font-weight:790}
-.hero p{margin:12px 0 0;color:#c6e4da;font-size:13px}
-.hero-route{display:flex;align-items:center;gap:9px;color:#d2efe5;font-size:11px;white-space:nowrap;background:rgba(255,255,255,.07);border:1px solid rgba(225,255,244,.17);padding:10px 13px;border-radius:10px;backdrop-filter:blur(6px);font-weight:650}
-.hero-route b{color:#fff;font-weight:800}
-.hero-route i{font-style:normal;color:#64c6b7}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
-.stat{display:flex;align-items:center;gap:14px;min-width:0;padding:16px 19px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 2px 9px rgba(18,62,48,.02)}
-.stat-icon{flex:none;width:39px;height:39px;border-radius:11px;display:grid;place-items:center;background:#e6f5ef;color:#127567}
-.stat-icon svg{width:19px;height:19px;stroke-width:1.8}
-.stat:nth-child(2) .stat-icon{background:#e6f3f5;color:#1b8f95}
-.stat:nth-child(3) .stat-icon{background:#edf3e8;color:#608445}
-.stat:nth-child(4) .stat-icon{background:#e8f1ee;color:#276d62}
-.stat-content{display:grid;gap:0;min-width:0}
-.stat strong{font-size:21px;line-height:1.08;letter-spacing:-.04em;font-weight:850;color:var(--forest)}
-.stat small{font-size:11px;color:var(--muted);font-weight:600;margin-top:3px}
-.notice{margin:16px 0 21px;border:1px solid #efdfba;border-radius:12px;background:var(--amber-bg);color:#6c552b;font-size:12px}
-.notice summary{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;list-style:none;font-weight:730}
+.wrap{width:min(calc(100% - 48px),1220px);margin-inline:auto}
+.topbar{background:#fff;border-bottom:1px solid var(--line);position:relative;z-index:5}
+.top-inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:var(--pine);display:grid;place-items:center;position:relative;flex:none;overflow:hidden;color:#e4fffa;font-size:15px;font-weight:900}
+.brand-mark:after{content:"";position:absolute;width:30px;height:30px;border:1px solid #58b6a4;transform:rotate(45deg);bottom:-20px;left:15px}
+.brand-word{display:grid;gap:1px;min-width:0}
+.brand-word strong{font-size:13px;letter-spacing:-.03em;color:var(--pine);line-height:1.25}
+.brand-word small{font-size:10px;font-weight:600;color:var(--muted)}
+.top-right{display:flex;align-items:center;gap:19px}
+.top-context{display:flex;gap:10px;font-size:10px;font-weight:750;letter-spacing:.08em;color:#779188;text-transform:uppercase}
+.top-context span+span:before{content:"/";margin-right:10px;color:#bdcdc5}
+.share{background:#f2f8f4;border:1px solid #cbded3;border-radius:9px;padding:9px 13px;font-size:11px;font-weight:800;color:var(--pine);display:flex;align-items:center;gap:7px}
+.share:hover{background:#e5f4eb}
+.share svg{width:14px;height:14px}
+main{padding-top:20px;padding-bottom:24px}
+.hero{background:var(--pine-deep);border-radius:18px;position:relative;overflow:hidden;color:white;isolation:isolate;box-shadow:0 18px 42px rgba(13,60,45,.13)}
+.hero:before{content:"";position:absolute;z-index:-1;pointer-events:none;width:610px;height:430px;right:-140px;top:-260px;border:1px solid rgba(147,241,224,.17);border-radius:48% 52% 61% 39%;transform:rotate(-15deg);box-shadow:0 0 0 47px rgba(94,205,186,.036),0 0 0 96px rgba(94,205,186,.035),0 0 0 157px rgba(94,205,186,.025)}
+.hero:after{content:"";position:absolute;pointer-events:none;background:radial-gradient(ellipse at top right,rgba(39,179,156,.17),transparent 55%);inset:0;z-index:-1}
+.hero-main{padding:30px 34px 25px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7fceb9;font-weight:850;display:block;margin-bottom:7px}
+.hero h1{font-size:clamp(29px,3.3vw,42px);line-height:1.14;letter-spacing:-.058em;font-weight:790;margin:0}
+.hero-sub{font-size:12px;color:#b5dcd0;margin:10px 0 0;font-weight:550}
+.hero-numbers{display:flex;gap:19px;padding-bottom:3px}
+.hero-number{min-width:65px;display:grid;gap:1px;border-left:1px solid rgba(161,234,214,.22);padding-left:18px}
+.hero-number strong{font-size:25px;font-weight:790;line-height:1.15;letter-spacing:-.055em}
+.hero-number small{font-size:9px;color:#9ac5b7;text-transform:uppercase;letter-spacing:.1em;font-weight:720}
+.route-strip{border-top:1px solid rgba(184,240,221,.17);background:rgba(0,0,0,.11);padding:15px 28px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative}
+.stop{border:0;position:relative;display:grid;justify-items:start;align-content:start;gap:3px;text-align:left;padding:0 8px 0 18px;background:transparent;color:#d0e9dd;min-width:0}
+.stop:not(:last-child):before{content:"";height:1px;position:absolute;top:7px;left:28px;right:-9px;background:rgba(151,223,207,.36)}
+.stop:after{content:"";width:11px;height:11px;border:2px solid #64c6b0;background:var(--pine);border-radius:50%;position:absolute;top:1px;left:1px;z-index:1;transition:background .15s,transform .15s}
+.stop:hover:after,.stop:focus-visible:after{background:#7cf1d6;transform:scale(1.15)}
+.stop strong{font-size:11px;line-height:1.25;color:#f1fff9;font-weight:800;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.stop small{font-size:9px;color:#83b8a9;font-weight:650;white-space:nowrap}
+.stop:first-child:after,.stop:last-child:after{background:#64c6b0}
+.section-area{display:grid;grid-template-columns:210px minmax(0,1fr);align-items:start;gap:18px;margin-top:20px}
+.sidebar{position:sticky;top:18px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 10px;box-shadow:var(--soft-shadow)}
+.side-caption{display:block;padding:3px 13px 9px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:850;color:#8ca49a}
+.switches{display:grid;gap:5px}
+.switch{width:100%;background:transparent;border:1px solid transparent;border-radius:10px;min-height:49px;display:flex;align-items:center;gap:11px;padding:9px 12px;text-align:left;color:#6d8277;position:relative;transition:background .15s,color .15s}
+.switch:hover:not(.active){background:#f4f8f5;color:var(--pine)}
+.switch.active{background:#e7f5ef;border-color:#cde8dc;color:var(--pine)}
+.switch-icon{display:grid;place-items:center;width:32px;height:32px;flex:none;border-radius:9px;background:#f1f6f2}
+.switch.active .switch-icon{background:var(--pine);color:#fff}
+.switch-icon svg{width:17px;height:17px;stroke-width:1.85}
+.switch-name{font-size:12px;font-weight:780}
+.switch-count{margin-left:auto;font-size:10px;font-weight:760;color:#96aaa0}
+.switch.active .switch-count{color:var(--aqua-dark)}
+.side-meta{margin:12px 4px 0;border-top:1px solid var(--line-soft);padding:15px 9px 2px;color:#879b91;display:grid;gap:5px}
+.side-meta strong{font-size:10px;color:#58746a;font-weight:800}
+.side-meta small{font-size:10px;line-height:1.55}
+.area-right{min-width:0}
+.panel{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:var(--soft-shadow);overflow:hidden}
+.panel-top{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:20px 23px;border-bottom:1px solid var(--line-soft)}
+.panel-heading{display:grid;gap:2px}
+.panel-label{font-size:9px;color:#0a9184;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+.panel h2{font-size:22px;line-height:1.2;letter-spacing:-.046em;color:var(--pine);margin:0;font-weight:810}
+.panel-meta{font-size:10px;color:#84978e;font-weight:670;white-space:nowrap}
+.day-workspace{display:grid;grid-template-columns:minmax(220px,35%) minmax(0,1fr);min-height:525px}
+.day-rail{background:#fbfdfb;border-right:1px solid var(--line);padding:11px 9px 14px 10px;max-height:650px;overflow-y:auto;scrollbar-color:#c5ddd0 transparent;scrollbar-width:thin}
+.month-head{font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:850;color:#96a79f;padding:12px 12px 8px;margin:0}
+.day-opt{width:100%;border:1px solid transparent;position:relative;background:transparent;border-radius:10px;padding:10px 10px;display:flex;align-items:center;gap:10px;text-align:left;color:var(--ink);margin-bottom:3px;transition:background .16s,border-color .16s,transform .16s}
+.day-opt:hover:not(.active){background:#eff6f1}
+.day-opt.active{background:var(--pine);border-color:var(--pine-mid);color:white;box-shadow:0 5px 13px rgba(22,86,61,.13)}
+.day-opt-num{flex:none;width:34px;height:34px;display:grid;place-items:center;border-radius:9px;border:1px solid #dde9e2;background:white;color:#7b998b;font-size:12px;font-weight:850;font-variant-numeric:tabular-nums}
+.day-opt.active .day-opt-num{background:#2e705f;border-color:#387b68;color:white}
+.day-opt-info{min-width:0;display:grid;gap:2px}
+.day-opt-date{font-size:9px;font-weight:720;color:#8ca399}
+.day-opt.active .day-opt-date{color:#9fe2d0}
+.day-opt-title{font-size:11px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.day-opt-dot{width:6px;height:6px;flex:none;margin-left:auto;border-radius:50%;background:#78aa95}
+.day-opt.argentina .day-opt-dot{background:#2dbbaf}
+.day-opt.risky .day-opt-dot{background:#dcaa43}
+.day-opt.active .day-opt-dot{background:#c8fff1}
+.day-focus{min-width:0;padding:23px 26px 18px;display:flex;flex-direction:column}
+.day-focus:empty:before{content:"Selecciona un día";color:var(--muted)}
+.focus-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.focus-day{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:#0a8d81;font-weight:850}
+.type-tag{font-size:9px;font-weight:810;letter-spacing:.06em;text-transform:uppercase;border:1px solid #d1e9df;background:#edf8f2;color:#347662;border-radius:20px;padding:5px 9px;white-space:nowrap}
+.type-tag.travel{background:#e5f5f4;border-color:#c9eae4;color:#137f78}
+.focus-title{margin:17px 0 0;font-size:clamp(20px,2.2vw,29px);line-height:1.23;letter-spacing:-.047em;font-weight:800;color:var(--pine)}
+.focus-summary{margin:11px 0 0;color:#6b8377;line-height:1.65;font-size:12px}
+.focus-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:21px}
+.focus-metric{background:#f3f8f4;border:1px solid #e2ede5;border-radius:10px;padding:12px 13px;display:grid;gap:4px;min-width:0}
+.focus-metric span{font-size:9px;color:#879c91;text-transform:uppercase;letter-spacing:.08em;font-weight:750}
+.focus-metric strong{font-size:12px;color:#255849;font-weight:830;line-height:1.3;overflow-wrap:anywhere}
+.focus-section-title{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#90a299;margin:21px 0 9px;font-weight:830}
+.visits{display:flex;flex-wrap:wrap;gap:7px}
+.visit{font-size:10px;font-weight:650;color:#356257;padding:6px 9px;background:#f0f7f2;border:1px solid #deebe2;border-radius:7px}
+.alert{padding:10px 12px;margin-top:16px;color:#855d1d;background:var(--warning-bg);border:1px solid #eadbb9;border-radius:9px;font-size:11px;line-height:1.5}
+.alert strong{font-weight:800}
+.focus-foot{margin-top:auto;padding-top:23px}
+.focus-actions{display:flex;flex-wrap:wrap;gap:8px}
+.action{border:1px solid #afdecb;background:var(--pine);color:#fff;border-radius:9px;padding:10px 12px;font-size:11px;line-height:1.25;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.action:hover{background:#1f604e;color:#fff;text-decoration:none}
+.action.secondary{background:#eef7f1;border-color:#d0e8da;color:#255d4e}
+.action.secondary:hover{background:#dbefe1;color:#255d4e}
+.action svg{width:14px;height:14px;flex:none}
+.focus-nav{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line-soft);margin-top:20px;padding-top:13px}
+.focus-nav button{border:0;background:transparent;color:#648074;font-size:11px;font-weight:740;padding:8px 2px}
+.focus-nav button:hover:not(:disabled){color:var(--pine)}
+.stay-intro{padding:19px 22px 15px;background:linear-gradient(90deg,#f7fbf7,#fff);border-bottom:1px solid var(--line-soft)}
+.stay-intro-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.stay-intro-top strong{font-size:11px;color:#2a5949;font-weight:830}
+.stay-intro-top small{font-size:10px;color:#82988d}
+.stay-strip{height:38px;display:flex;align-items:stretch;gap:3px;width:100%}
+.stay-seg{position:relative;flex-basis:0;min-width:0;border:0;border-radius:5px;background:#cee9d9;display:grid;place-items:center;color:#2d6f5a;padding:0}
+.stay-seg.argentina{background:#5bcabb;color:#fff}
+.stay-seg:hover,.stay-seg:focus-visible{outline:2px solid #0b8073;outline-offset:2px;z-index:2}
+.stay-seg:after{content:attr(data-num);font-size:9px;font-weight:820}
+.stay-intro-legend{display:flex;align-items:center;gap:15px;margin-top:9px;font-size:9px;font-weight:670;color:#81958c}
+.legend-dot{width:7px;height:7px;display:inline-block;border-radius:50%;background:#b8d8c7;margin-right:5px}
+.legend-dot.argentina{background:#40b9ac}
+.stay-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:13px}
+.stay-card{border:1px solid var(--line);background:#fff;border-radius:12px;min-width:0;transition:border-color .2s,background .2s,box-shadow .2s;overflow:hidden}
+.stay-card:hover{border-color:#beded0;box-shadow:0 6px 22px rgba(18,72,50,.055)}
+.stay-card[open]{background:#f7fbf8;border-color:#b7ddca}
+.stay-card summary{cursor:pointer;list-style:none;padding:14px 15px}
+.stay-card summary::-webkit-details-marker{display:none}
+.stay-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.stay-index{font-size:9px;font-weight:850;letter-spacing:.07em;color:#a0b0a7;text-transform:uppercase}
+.stay-dates{font-size:9px;color:#7d9688;font-weight:750;white-space:nowrap}
+.stay-card h3{margin:11px 0 3px;font-size:16px;line-height:1.25;letter-spacing:-.038em;color:var(--pine)}
+.stay-details-line{display:flex;justify-content:space-between;gap:6px;font-size:10px;color:#648277;align-items:center}
+.stay-night{font-size:10px;color:#168477;background:#e8f6f0;border-radius:20px;padding:3px 8px;font-weight:800;white-space:nowrap}
+.stay-card-preview{font-size:10px;color:#85988d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:13px;display:block;line-height:1.5}
+.stay-card-bottom{margin-top:11px;padding-top:9px;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;gap:8px;font-size:9px;font-weight:700;color:#8b9c92}
+.stay-open{color:#0b9281}
+.stay-card[open] .stay-open{color:var(--pine)}
+.stay-expanded{padding:11px 15px 14px;border-top:1px solid var(--line);display:grid;gap:8px}
+.stay-expanded p{font-size:11px;line-height:1.6;margin:0;color:#637b6e}
+.stay-expanded p b{color:#2e5746}
+.stay-expanded .action{justify-self:start}
+.notice{margin-top:15px;border:1px solid #ebdfc1;border-radius:11px;background:#fffaf0}
+.notice summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 15px;color:#775a27;font-size:11px;font-weight:780}
 .notice summary::-webkit-details-marker{display:none}
-.notice-head{display:flex;gap:10px;align-items:center}
-.notice-head svg{width:17px;height:17px;flex:none;stroke:#a77425}
-.notice .notice-open{color:#98712c;transition:transform .2s;font-size:17px;font-weight:500}
-.notice[open] .notice-open{transform:rotate(45deg)}
-.notice p{margin:0;padding:0 16px 14px 43px;line-height:1.75}
-.notice b{color:#634c26}
-.workspace{display:grid;grid-template-columns:246px minmax(0,1fr);gap:22px;align-items:start}
-.sidebar{position:sticky;top:20px;padding:17px 11px;background:white;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
-.nav-label{display:block;padding:1px 13px 11px;color:#84998f;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
-.section-switch{display:grid;gap:5px}
-.switch{border:1px solid transparent;width:100%;padding:12px;display:flex;align-items:center;gap:11px;text-align:left;border-radius:11px;background:transparent;color:#60766d;transition:background .15s,color .15s,border-color .15s}
-.switch:hover:not(.active){background:#f3f8f5;color:var(--forest)}
-.switch.active{background:#e8f6ef;color:var(--forest);border-color:#cce7dc}
-.switch-icon{display:grid;place-items:center;width:36px;height:36px;flex:none;border-radius:9px;background:#f2f7f4;color:#67857a}
-.switch.active .switch-icon{background:var(--forest);color:white}
-.switch-icon svg{width:19px;height:19px;stroke-width:1.8}
-.switch-copy{min-width:0;display:grid;gap:1px}
-.switch-copy strong{font-size:12px;font-weight:780;line-height:1.25}
-.switch-copy small{font-size:10px;color:#8a9d94;font-weight:600}
-.switch.active .switch-copy small{color:#628477}
-.switch-arrow{margin-left:auto;font-weight:750;color:var(--lake);font-size:15px}
-.sidebar-foot{border-top:1px solid var(--line-light);margin:13px 4px 0;padding:15px 9px 0;font-size:11px;color:#82958d;line-height:1.65}
-.sidebar-foot b{color:#5f7b6f;font-weight:700}
-.panel-stack{min-width:0}
-.panel{overflow:hidden;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:var(--shadow)}
-.panel-header{padding:24px 27px 19px;display:flex;align-items:end;justify-content:space-between;gap:14px;border-bottom:1px solid var(--line)}
-.panel-kicker{font-size:10px;letter-spacing:.14em;font-weight:800;color:#15968a;text-transform:uppercase;display:block;margin-bottom:5px}
-.panel-header h2{font-size:23px;margin:0;line-height:1.24;letter-spacing:-.045em;font-weight:790;color:var(--forest)}
-.panel-count{font-size:11px;color:#789087;font-weight:650;text-align:right}
-.item-list{padding:7px 14px}
-.entry{position:relative;margin:4px 0;border:1px solid transparent;border-radius:12px;transition:border-color .15s,background .15s}
-.entry:hover{background:#f9fcfa}
-.entry[open]{background:#f6fbf8;border-color:#d4e9de}
-.entry summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:38px minmax(0,1fr) minmax(65px,auto) 18px;align-items:center;gap:15px;padding:15px 13px}
-.entry summary::-webkit-details-marker{display:none}
-.entry .serial{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:#f0f5f2;color:#598074;font-size:12px;font-weight:790;font-variant-numeric:tabular-nums}
-.entry[open] .serial{background:var(--forest);color:#fff}
-.entry.argentina .serial{background:#e2f6f2;color:#177e78}
-.entry.argentina[open] .serial{background:#0d8c82;color:white}
-.entry-main{min-width:0;display:grid;gap:2px}
-.entry-meta{display:flex;align-items:center;flex-wrap:wrap;gap:7px;font-size:10px;font-weight:680;color:#72867d}
-.entry-country{display:inline-block;font-size:9px;padding:1px 7px;border-radius:20px;background:#f0f4f1;color:#657e73}
-.entry-country.ar{background:#e4f7f4;color:#147d74}
-.entry-title{font-size:14px;font-weight:770;color:var(--ink);letter-spacing:-.022em;line-height:1.4}
-.entry-preview{font-size:11px;color:#84958d;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:100%;display:block}
-.entry-side{display:grid;gap:2px;text-align:right;white-space:nowrap;align-items:center}
-.entry-side strong{font-size:12px;font-weight:790;color:var(--forest);line-height:1.3}
-.entry-side small{font-size:10px;color:#87998f;font-weight:560}
-.chevron{display:grid;place-items:center;color:#81a198;font-size:22px;transition:transform .2s;line-height:1}
-.entry[open] .chevron{transform:rotate(180deg)}
-.entry-details{margin:0 14px 13px 66px;border-top:1px solid #dceae2;padding:13px 0 5px;display:grid;gap:9px;font-size:12px}
-.detail-line{margin:0;line-height:1.65;color:#60766d}
-.detail-line b{color:#2c5145;font-weight:770}
-.detail-alert{padding:9px 11px;border:1px solid #f0dfbc;background:#fff9eb;border-radius:8px;color:#805d27;font-size:11px;font-weight:650;line-height:1.5}
-.detail-actions{display:flex;flex-wrap:wrap;gap:8px;padding-top:3px}
-.detail-action{display:inline-flex;align-items:center;gap:7px;border:1px solid #bfdfd3;background:#e8f5ef;padding:9px 12px;border-radius:9px;color:var(--forest);font-size:11px;font-weight:800;line-height:1.25;transition:background .15s}
-.detail-action:hover{background:#d3ece1;text-decoration:none}
-.detail-action.secondary{background:white;border-color:#d9e8e0;color:#547266}
-.detail-action.secondary:hover{background:#f1f7f3}
-.detail-action svg{width:13px;height:13px}
-.panel-foot{border-top:1px solid var(--line-light);background:#fcfdfc;padding:15px 27px;font-size:11px;color:#83958c;line-height:1.6}
-.weather-header-action{display:flex;align-items:center;gap:13px}
-.weather-reload{border:1px solid #bedfd1;background:#e8f7f0;border-radius:9px;padding:9px 12px;font-size:11px;font-weight:760;color:var(--forest)}
-.weather-reload:hover{background:#d5eee2}
-.weather-help{margin:0;padding:12px 27px;border-bottom:1px solid var(--line-light);background:#fbfdfc;color:#72877d;font-size:11px}
-.weather-stay{padding:17px 25px;border-bottom:1px solid var(--line-light)}
+.notice .notice-symbol{width:18px;height:18px;border-radius:50%;background:#f3e6c7;color:#875b16;display:inline-grid;place-items:center;margin-right:7px;font-weight:900}
+.notice .expand{font-size:17px;font-weight:500}
+.notice[open] .expand{transform:rotate(45deg)}
+.notice p{margin:0;padding:0 15px 12px;color:#785f32;font-size:11px;line-height:1.65}
+.notice p b{color:#674c1f}
+.panel-foot{font-size:10px;color:#82968c;padding:13px 22px;border-top:1px solid var(--line-soft);background:#fcfdfc;line-height:1.6}
+.weather-reload{background:#e7f5ed;border:1px solid #c4e3d3;color:#27624c;border-radius:8px;padding:8px 12px;font-size:11px;font-weight:770}
+.weather-reload:hover{background:#d8eee2}
+.weather-help{font-size:11px;color:#7f968a;margin:0;padding:12px 22px;background:#fafdfa;border-bottom:1px solid var(--line-soft)}
+.weather-stay{padding:16px 21px;border-bottom:1px solid var(--line-soft)}
 .weather-stay:last-child{border-bottom:0}
-.weather-stay-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.weather-stay-top span{font-size:13px;font-weight:780;color:var(--forest)}
-.weather-stay-top small{font-size:11px;color:#80938b;text-align:right}
+.weather-stay-top{display:flex;align-items:center;justify-content:space-between;gap:13px}
+.weather-stay-top span{font-size:12px;font-weight:810;color:var(--pine)}
+.weather-stay-top small{font-size:10px;color:#809588;text-align:right}
 .weather-days{display:grid;gap:7px;margin-top:12px}
-.weather-day{display:grid;grid-template-columns:minmax(105px,1.1fr) 85px 95px minmax(130px,1fr);align-items:center;gap:12px;border:1px solid #e0ece4;border-radius:10px;background:#f7fbf9;padding:11px 13px}
-.weather-when{font-size:12px;font-weight:750;color:var(--ink)}
-.weather-when small{display:block;font-size:10px;color:#81978a;font-weight:500}
-.weather-day strong{font-size:13px;font-weight:830;color:var(--forest)}
-.weather-day span{font-size:11px;color:#527b70}
-.weather-day.unavailable{display:flex;justify-content:space-between;color:#83968e;background:#fbfdfc}
-.weather-pending{font-size:11px;color:#7b9085;line-height:1.65;padding-top:9px}
-#weather-list>.weather-pending{padding:20px 26px}
-footer{margin-top:28px;padding:18px 0 25px;border-top:1px solid var(--line);color:#84978d;font-size:11px}
-footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.weather-day{display:grid;grid-template-columns:minmax(105px,1fr) 90px 100px minmax(135px,1fr);gap:12px;align-items:center;padding:10px 12px;border:1px solid #e2ece3;border-radius:9px;background:#f7fbf8}
+.weather-when{font-size:11px;font-weight:780;color:#285846}
+.weather-when small{display:block;font-size:10px;font-weight:500;color:#849b8d}
+.weather-day strong{font-size:12px;font-weight:830;color:var(--pine)}
+.weather-day span{font-size:10px;color:#618273}
+.weather-day.unavailable{display:flex;justify-content:space-between;color:#899d91}
+.weather-pending{font-size:11px;line-height:1.6;color:#82988d;margin:0;padding:10px 0}
+#weather-list>.weather-pending{padding:18px 21px}
+footer{padding:21px 0 25px;border-top:1px solid #dfe8e0;color:#81988d;font-size:10px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
 footer a{font-weight:750}
-@media(max-width:920px){
- .workspace{grid-template-columns:208px minmax(0,1fr);gap:15px}
- .stats{gap:9px}
- .stat{padding:14px 13px;gap:10px}
- .panel-header{padding:21px 20px 17px}
- .hero-route{display:none}
- .item-list{padding:5px 9px}
+@media(max-width:1050px){
+ .wrap{width:min(calc(100% - 32px),1220px)}
+ .section-area{grid-template-columns:185px minmax(0,1fr);gap:13px}
+ .day-workspace{grid-template-columns:35% minmax(0,1fr)}
+ .day-focus{padding:18px 18px 15px}
+ .focus-metrics{grid-template-columns:1fr 1fr}
+ .hero-main{padding:27px 27px 22px}
+ .route-strip{padding:13px 20px}
 }
-@media(max-width:700px){
- .wrap{width:calc(100% - 26px)}
- .topbar-inner{min-height:64px}
- .brand-symbol{width:36px;height:36px;border-radius:10px}
- .brand-symbol svg{width:21px;height:21px}
- .header-meta{display:none}
- .share{padding:9px 11px}
- main{padding-top:15px}
- .hero{min-height:146px;padding:23px 22px;border-radius:15px}
- .hero-label{font-size:9px;margin-bottom:8px}
- h1{font-size:27px}
- .hero p{font-size:11px;margin-top:11px}
- .stats{gap:7px;margin-top:10px;grid-template-columns:repeat(4,minmax(0,1fr))}
- .stat{display:grid;place-items:center;text-align:center;padding:11px 3px;gap:0;border-radius:10px}
- .stat-icon{display:none}
- .stat strong{font-size:20px}
- .stat small{font-size:9px;margin-top:3px}
- .notice{margin:11px 0 13px}
- .notice summary{padding:11px 12px;font-size:11px}
- .notice .notice-open{font-size:16px}
- .notice p{padding:0 12px 12px 12px}
- .workspace{display:block}
- .sidebar{position:static;box-shadow:none;background:transparent;border:0;border-radius:0;padding:0;margin-bottom:11px}
- .nav-label,.sidebar-foot{display:none}
- .section-switch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:5px;background:#e3efe9;border:1px solid #d4e6dc;border-radius:12px}
- .switch{justify-content:center;text-align:center;gap:0;border-radius:8px;padding:10px 5px}
- .switch.active{background:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(24,76,50,.09)}
- .switch-icon,.switch-arrow,.switch-copy small{display:none}
- .switch-copy strong{font-size:11px}
- .panel{border-radius:13px}
- .panel-header{padding:17px 16px 14px}
- .panel-kicker{font-size:9px;margin-bottom:4px}
- .panel-header h2{font-size:20px}
- .panel-count{font-size:10px}
- .item-list{padding:5px 6px}
- .entry summary{grid-template-columns:32px minmax(0,1fr) minmax(50px,auto) 13px;gap:9px;padding:13px 8px}
- .entry .serial{width:30px;height:30px;font-size:10px;border-radius:8px}
- .entry-title{font-size:12px}
- .entry-preview{font-size:10px}
- .entry-meta{font-size:9px;gap:4px}
- .entry-country{font-size:8px}
- .entry-side strong{font-size:11px}
- .entry-side small{font-size:9px}
- .chevron{font-size:18px}
- .entry-details{margin:0 12px 12px;padding:12px 0 3px;font-size:11px}
- .panel-foot{padding:13px 16px;font-size:10px}
- .weather-stay{padding:15px 13px}
- .weather-help{padding:11px 15px;font-size:10px}
- .weather-stay-top{align-items:flex-start}
- .weather-stay-top small{max-width:150px;font-size:10px}
- .weather-day{grid-template-columns:minmax(0,1fr) auto;gap:5px 10px;padding:10px}
- .weather-day .weather-when{grid-column:1}
- .weather-day strong{grid-column:2;text-align:right}
- .weather-day span{font-size:10px}
+@media(max-width:760px){
+ .top-inner{height:62px}
+ .top-context{display:none}
+ main{padding-top:13px}
+ .hero{border-radius:14px}
+ .hero-main{padding:22px 20px 20px;align-items:flex-start}
+ .hero h1{font-size:29px}
+ .hero-numbers{gap:9px}
+ .hero-number{min-width:47px;padding-left:10px}
+ .hero-number strong{font-size:20px}
+ .hero-number small{font-size:8px}
+ .hero-sub{font-size:11px}
+ .route-strip{overflow-x:auto;grid-template-columns:repeat(6,minmax(110px,1fr));padding:14px 14px 13px;scrollbar-width:none}
+ .route-strip::-webkit-scrollbar{display:none}
+ .stop{padding-left:16px}
+ .stop:not(:last-child):before{right:-6px}
+ .section-area{display:block;margin-top:13px}
+ .sidebar{position:static;border:0;padding:0;margin-bottom:11px;background:transparent;box-shadow:none;border-radius:0}
+ .side-caption,.side-meta{display:none}
+ .switches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:4px;background:#e5eee7;border:1px solid #d6e4da;gap:4px;border-radius:11px}
+ .switch{min-height:41px;justify-content:center;text-align:center;padding:9px 5px;border-radius:8px}
+ .switch.active{background:#fff;border-color:transparent;box-shadow:0 2px 9px rgba(21,64,49,.07)}
+ .switch-icon,.switch-count{display:none}
+ .switch-name{font-size:11px}
+ .panel-top{padding:17px 16px 14px}
+ .panel h2{font-size:20px}
+ .day-workspace{display:block;min-height:auto}
+ .day-rail{display:flex;align-items:stretch;gap:6px;padding:10px 10px;overflow-x:auto;overflow-y:hidden;max-height:none;scrollbar-width:none;border-right:0;border-bottom:1px solid var(--line);scroll-snap-type:x proximity}
+ .day-rail::-webkit-scrollbar{display:none}
+ .month-head{display:none}
+ .day-opt{flex:0 0 116px;display:flex;align-items:center;gap:7px;padding:8px;border:1px solid #e5eee7;margin:0;scroll-snap-align:start;background:#fff}
+ .day-opt-num{width:27px;height:29px;font-size:10px;border-radius:7px}
+ .day-opt-date{font-size:9px}
+ .day-opt-title{font-size:10px;max-width:75px}
+ .day-opt-dot{display:none}
+ .day-focus{padding:20px 18px 17px;min-height:390px}
+ .focus-title{font-size:25px}
+ .focus-summary{font-size:12px}
+ .focus-metrics{margin-top:16px}
+ .focus-section-title{margin-top:16px}
+ .stay-intro{padding:15px 14px 14px}
+ .stay-grid{gap:8px;padding:10px}
+ .stay-card summary{padding:12px}
+ .stay-card h3{font-size:14px}
+ .stay-dates{font-size:9px}
+ .panel-foot{padding:12px 16px}
+ .weather-stay{padding:14px 15px}
+ .weather-help{padding:11px 16px}
+ .weather-day{grid-template-columns:1fr auto;gap:5px 10px}
+ .weather-day strong{text-align:right}
  .weather-day span:last-child{text-align:right}
+}
+@media(max-width:520px){
+ .wrap{width:calc(100% - 22px)}
+ .brand-word strong{font-size:12px}
+ .hero-main{display:block;padding:22px 18px 17px}
+ .hero h1{font-size:29px}
+ .hero-numbers{margin-top:17px;justify-content:flex-start;gap:23px}
+ .hero-number{padding-left:11px}
+ .hero-number strong{font-size:21px}
+ .route-strip{grid-template-columns:repeat(6,108px);padding:13px 13px}
+ .panel-meta{max-width:100px;white-space:normal;text-align:right}
+ .day-focus{padding:19px 15px 15px}
+ .focus-title{font-size:23px}
+ .focus-metric{padding:11px}
+ .focus-metric strong{font-size:11px}
+ .stay-grid{grid-template-columns:1fr}
+ .stay-card summary{padding:14px}
+ .stay-card h3{font-size:16px}
+ .stay-card-preview{margin-top:10px}
+ .stay-intro-top{align-items:flex-start}
+ .stay-intro-top small{text-align:right}
+ .stay-strip{height:32px}
+ .stay-seg:after{font-size:8px}
  footer .wrap{display:block}
  footer .wrap span{display:block;margin-top:4px}
 }
-@media(max-width:365px){
- .brand-copy strong{font-size:12px}
- .brand-copy small{font-size:10px}
- h1{font-size:24px}
- .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
- .stat{padding:10px 6px}
- .entry summary{gap:6px;grid-template-columns:29px minmax(0,1fr) auto 12px}
- .entry .serial{width:27px;height:28px}
- .entry-side{max-width:75px}
- .entry-side strong{white-space:normal}
-}
 @media(prefers-reduced-motion:reduce){
  html{scroll-behavior:auto}
- .switch,.chevron,.entry,.detail-action,.share,.notice-open{transition:none}
+ .stop:after,.switch,.day-opt,.stay-card{transition:none}
 }
 </style>
 </head>
 <body>
-<header class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="brand">
-      <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c3-7 7-4 10-10"/><path d="M10 9h4V5"/><circle cx="4" cy="19" r="1.5"/><circle cx="18.5" cy="5.5" r="2"/></svg></span>
-      <span class="brand-copy"><strong>Viaje en moto</strong><small>Planificación · 2026</small></span>
-    </div>
-    <div class="header-actions">
-      <span class="header-meta">Chile / Argentina</span>
-      <button type="button" id="share" class="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="12" rx="2"/><path d="M12 15V3m-4 4 4-4 4 4"/></svg><span>Compartir</span></button>
-    </div>
-  </div>
-</header>
-
+<header class="topbar"><div class="wrap top-inner">
+ <div class="brand"><span class="brand-mark" aria-hidden="true">↗</span><span class="brand-word"><strong>Viaje en moto</strong><small>Itinerario 2026</small></span></div>
+ <div class="top-right"><div class="top-context"><span>Chile</span><span>Argentina</span></div>
+ <button type="button" class="share" id="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5"/><path d="M4 13v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/></svg><span>Compartir</span></button></div>
+</div></header>
 <main class="wrap">
-  <section class="hero" aria-labelledby="page-title">
-    <div><span class="hero-label">Ruta · 2026</span><h1 id="page-title">Itinerario de viaje</h1><p>25 de noviembre — 11 de diciembre · Chile y Argentina</p></div>
-    <div class="hero-route" aria-label="Ruta principal"><b>Santiago</b><i>→</i>Sur de Chile<i>→</i>Argentina<i>→</i><b>Santiago</b></div>
-  </section>
-
-  <div id="summary" class="stats" aria-label="Resumen del viaje"></div>
-
-  <details class="notice">
-    <summary><span class="notice-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 21h20L12 3Z"/><path d="M12 9v5m0 3h.01"/></svg>3 aspectos por confirmar</span><span class="notice-open" aria-hidden="true">+</span></summary>
-    <p><b>Hua Hum:</b> incluye ripio. <b>Lago Maihue:</b> verificar hasta dónde hay pavimento. <b>Bariloche → Futrono:</b> revisar distancia real y tiempos de frontera. Villa Traful es opcional por la RP65 (ripio). No hay alojamientos reservados.</p>
-  </details>
-
-  <div class="workspace">
-    <aside class="sidebar" aria-label="Navegación del itinerario">
-      <span class="nav-label">Consultar</span>
-      <div class="section-switch" role="tablist" aria-label="Secciones del viaje">
-        <button class="switch active" type="button" id="tab-stays" role="tab" aria-selected="true" aria-controls="stays-panel">
-          <span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l9-6 9 6v11H3Z"/><path d="M9 20v-7h6v7"/></svg></span>
-          <span class="switch-copy"><strong>Alojamientos</strong><small>Fechas y reservas</small></span><span class="switch-arrow" aria-hidden="true">›</span>
-        </button>
-        <button class="switch" type="button" id="tab-days" role="tab" aria-selected="false" aria-controls="days-panel" tabindex="-1">
-          <span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M6 16V8a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v8"/></svg></span>
-          <span class="switch-copy"><strong>Día a día</strong><small>Recorrido y paradas</small></span><span class="switch-arrow" aria-hidden="true">›</span>
-        </button>
-        <button class="switch" type="button" id="tab-weather" role="tab" aria-selected="false" aria-controls="weather-panel" tabindex="-1">
-          <span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 17H6a4 4 0 0 1-.5-8A6 6 0 0 1 17 8a4.5 4.5 0 0 1 1 9h-2"/><path d="m9 21 2-4h-3l2-4"/></svg></span>
-          <span class="switch-copy"><strong>Clima</strong><small>Pronóstico por base</small></span><span class="switch-arrow" aria-hidden="true">›</span>
-        </button>
-      </div>
-      <div class="sidebar-foot">La información se mantiene en <b>GitHub</b>. Selecciona una fila para ver detalles o abrir una ruta.</div>
-    </aside>
-
-    <div class="panel-stack">
-      <section class="panel" id="stays-panel" role="tabpanel" aria-labelledby="tab-stays">
-        <div class="panel-header"><div><span class="panel-kicker">Estadías</span><h2>Alojamientos</h2></div><span class="panel-count">9 bases · 16 noches</span></div>
-        <div class="item-list" id="stay-list"></div>
-        <div class="panel-foot">Objetivo de alojamiento: habitación privada hasta US$45 por noche. Reservas pendientes.</div>
-      </section>
-      <section class="panel" id="days-panel" role="tabpanel" aria-labelledby="tab-days" hidden>
-        <div class="panel-header"><div><span class="panel-kicker">Recorrido</span><h2>Itinerario diario</h2></div><span class="panel-count">17 jornadas · 25 nov. al 11 dic.</span></div>
-        <div class="item-list" id="day-list"></div>
-        <div class="panel-foot">Los kilómetros son aproximados. Google Maps muestra rutas terrestres, no incluye la navegación en barcaza. Confirmar condiciones de las vías antes de salir.</div>
-      </section>
-      <section class="panel" id="weather-panel" role="tabpanel" aria-labelledby="tab-weather" hidden>
-        <div class="panel-header"><div><span class="panel-kicker">Pronósticos</span><h2>Clima por destino</h2></div><div class="weather-header-action"><button id="weather-reload" type="button" class="weather-reload">Actualizar</button></div></div>
-        <p class="weather-help">Temperaturas mín./máx. · probabilidad de lluvia · velocidad del viento y ráfagas.</p>
-        <div id="weather-list" aria-live="polite"><p class="weather-pending">Abre esta sección para consultar el pronóstico.</p></div>
-        <div class="panel-foot"><span id="weather-updated">Los pronósticos se muestran con hasta 16 días de anticipación.</span> Fuente: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0). No reemplaza el estado de rutas ni pasos fronterizos.</div>
-      </section>
-    </div>
+ <section class="hero" aria-labelledby="page-title">
+  <div class="hero-main">
+   <div><span class="eyebrow">Ruta · 2026</span><h1 id="page-title">Itinerario del viaje</h1><p class="hero-sub">25 nov. – 11 dic. · Chile y Argentina</p></div>
+   <div class="hero-numbers" id="hero-numbers" aria-label="Resumen del itinerario"></div>
   </div>
-</main>
+  <nav class="route-strip" id="route-strip" aria-label="Ir a puntos principales del viaje"></nav>
+ </section>
 
-<footer><div class="wrap"><div>Viaje en moto · 2026</div><span>Itinerario editable en <a href="https://github.com/jartazaf/travesia-lagos-2026" target="_blank" rel="noopener noreferrer">GitHub</a> · En planificación</span></div></footer>
-<script src="./route-data.js?v=8"></script>
+ <details class="notice">
+  <summary><span><span class="notice-symbol" aria-hidden="true">!</span>Tramos por confirmar</span><span class="expand" aria-hidden="true">+</span></summary>
+  <p><b>Hua Hum:</b> incluye ripio. <b>Lago Maihue:</b> verificar pavimento. <b>Bariloche → Futrono:</b> confirmar distancia y tiempos de frontera. <b>Villa Traful:</b> desvío opcional con ripio en la RP65. Alojamiento aún sin reservar.</p>
+ </details>
+
+ <div class="section-area">
+  <aside class="sidebar" aria-label="Secciones del viaje">
+   <span class="side-caption">Itinerario</span>
+   <div class="switches" role="tablist" aria-label="Información del viaje">
+    <button type="button" class="switch active" id="tab-days" role="tab" aria-selected="true" aria-controls="days-panel"><span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="19" r="2"/><circle cx="19" cy="5" r="2"/><path d="M5 17v-6a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v6"/></svg></span><span class="switch-name">Recorrido</span><span class="switch-count">17</span></button>
+    <button type="button" class="switch" id="tab-stays" role="tab" aria-selected="false" aria-controls="stays-panel" tabindex="-1"><span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l9-6 9 6v11H3Z"/><path d="M9 20v-7h6v7"/></svg></span><span class="switch-name">Alojamientos</span><span class="switch-count">9</span></button>
+    <button type="button" class="switch" id="tab-weather" role="tab" aria-selected="false" aria-controls="weather-panel" tabindex="-1"><span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 17H6a4 4 0 0 1-.5-8A6 6 0 0 1 17 8a4.5 4.5 0 0 1 1 9h-2"/><path d="M10 21h4m-5-3h6"/></svg></span><span class="switch-name">Clima</span><span class="switch-count">↗</span></button>
+   </div>
+   <div class="side-meta"><strong>25 nov. — 11 dic.</strong><small>Selecciona un día para revisar la ruta, paradas y condiciones. Los enlaces abren Google Maps.</small></div>
+  </aside>
+
+  <div class="area-right">
+   <section class="panel" id="days-panel" role="tabpanel" aria-labelledby="tab-days">
+    <div class="panel-top"><div class="panel-heading"><span class="panel-label">Calendario</span><h2>Recorrido diario</h2></div><span class="panel-meta">17 días · 2 países</span></div>
+    <div class="day-workspace"><div class="day-rail" id="day-list" aria-label="Seleccionar día del viaje"></div><article class="day-focus" id="day-detail" aria-live="polite"></article></div>
+    <div class="panel-foot">Kilómetros aproximados. Revisar estado de rutas antes de salir. La barcaza Puerto Fuy–Puerto Pirehueico no aparece en el enlace terrestre.</div>
+   </section>
+   <section class="panel" id="stays-panel" role="tabpanel" aria-labelledby="tab-stays" hidden>
+    <div class="panel-top"><div class="panel-heading"><span class="panel-label">Estadías</span><h2>Alojamientos</h2></div><span class="panel-meta">9 bases · 16 noches</span></div>
+    <div class="stay-intro"><div class="stay-intro-top"><strong>Distribución de noches</strong><small>Selecciona un tramo para ver el alojamiento</small></div><div class="stay-strip" id="stay-strip" aria-label="Distribución de estadías por noche"></div><div class="stay-intro-legend"><span><i class="legend-dot"></i>Chile</span><span><i class="legend-dot argentina"></i>Argentina</span></div></div>
+    <div class="stay-grid" id="stay-list"></div>
+    <div class="panel-foot">Objetivo: habitación privada por hasta US$45 por noche. Reservas pendientes.</div>
+   </section>
+   <section class="panel" id="weather-panel" role="tabpanel" aria-labelledby="tab-weather" hidden>
+    <div class="panel-top"><div class="panel-heading"><span class="panel-label">Pronósticos</span><h2>Clima por destino</h2></div><button type="button" id="weather-reload" class="weather-reload">Actualizar</button></div>
+    <p class="weather-help">Temperatura mínima y máxima · Probabilidad de lluvia · Viento y ráfagas.</p>
+    <div id="weather-list" aria-live="polite"><p class="weather-pending">Selecciona Clima para consultar los pronósticos.</p></div>
+    <div class="panel-foot"><span id="weather-updated">Datos disponibles cuando las fechas estén dentro de los próximos 16 días.</span> Fuente: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0).</div>
+   </section>
+  </div>
+ </div>
+</main>
+<footer><div class="wrap"><div>Viaje en moto · 2026</div><span>Información editable en <a href="https://github.com/jartazaf/travesia-lagos-2026" rel="noopener noreferrer" target="_blank">GitHub</a> · En planificación</span></div></footer>
+<script src="./route-data.js?v=9"></script>
 <script>
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
 const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const trip=window.TRIP_DATA;
-if(!trip){$("stay-list").textContent="No se pudieron cargar los datos del viaje.";return}
-const arrowIcon="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M7 17 17 7M8 7h9v9'/></svg>";
+if(!trip){$("day-list").textContent="No fue posible cargar el itinerario.";return;}
+const arrow="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M7 17 17 7M8 7h9v9'/></svg>";
 const nights=trip.stays.reduce((sum,s)=>sum+Number(s.nights||0),0);
-const icons=[
-"<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='16' rx='2'/><path d='M7 3v4m10-4v4M3 10h18'/></svg>",
-"<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'><path d='M3 10h18v10H3zM7 10V6h10v4M10 15h4'/></svg>",
-"<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'><path d='M3 20V9l9-6 9 6v11H3Z'/><path d='M9 20v-7h6v7'/></svg>",
-"<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M3 12h18M12 3a14 14 0 0 0 0 18M12 3a14 14 0 0 1 0 18'/></svg>"
-];
-const summary=[[trip.days.length,"días"],[nights,"noches"],[trip.stays.length,"bases"],["2","países"]];
-$("summary").innerHTML=summary.map((it,i)=>"<div class='stat'><span class='stat-icon' aria-hidden='true'>"+icons[i]+"</span><span class='stat-content'><strong>"+esc(it[0])+"</strong><small>"+esc(it[1])+"</small></span></div>").join("");
-const tabs=[["stays","stays-panel","tab-stays"],["days","days-panel","tab-days"],["weather","weather-panel","tab-weather"]];
-function selectTab(id,save){
-tabs.forEach(([name,panel,tab])=>{
-const on=id===name;
-$(panel).hidden=!on;$(tab).classList.toggle("active",on);
-$(tab).setAttribute("aria-selected",String(on));$(tab).tabIndex=on?0:-1;
-});
-if(id==="weather")document.dispatchEvent(new Event("trip-weather-open"));
-if(save)history.replaceState(null,"","#"+id);
-}
-tabs.forEach(([id,panel,tab],i)=>{
-$(tab).addEventListener("click",()=>selectTab(id,true));
-$(tab).addEventListener("keydown",e=>{
-if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft")return;
-e.preventDefault();
-const next=(i+(e.key==="ArrowRight"?1:tabs.length-1))%tabs.length;
-selectTab(tabs[next][0],true);$(tabs[next][2]).focus();
-});
-});
-const hash=location.hash.slice(1);
-selectTab(tabs.some(t=>t[0]===hash)?hash:"stays",false);
-window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(tabs.some(t=>t[0]===h))selectTab(h,false)});
+const totals=[[trip.days.length,"días"],[nights,"noches"],[trip.stays.length,"bases"]];
+$("hero-numbers").innerHTML=totals.map(([num,label])=>"<span class='hero-number'><strong>"+esc(num)+"</strong><small>"+esc(label)+"</small></span>").join("");
 const mapSearch=s=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(s);
 const directions=points=>{
-const q=new URLSearchParams({api:"1",origin:points[0],destination:points[points.length-1],travelmode:"driving"});
-if(points.length>2)q.set("waypoints",points.slice(1,-1).join("|"));
-return "https://www.google.com/maps/dir/?"+q.toString();
+ const q=new URLSearchParams({api:"1",origin:points[0],destination:points[points.length-1],travelmode:"driving"});
+ if(points.length>2)q.set("waypoints",points.slice(1,-1).join("|"));
+ return "https://www.google.com/maps/dir/?"+q.toString();
 };
-const number=i=>String(i).padStart(2,"0");
-const countryTag=c=>"<span class='entry-country"+(c==="Argentina"?" ar":"")+"'>"+esc(c)+"</span>";
+const routes=[
+  {name:"Santiago",date:"25 nov.",day:1},
+  {name:"Puerto Fuy",date:"28 nov.",day:4},
+  {name:"San Martín",date:"29 nov.",day:5},
+  {name:"Bariloche",date:"1 dic.",day:7},
+  {name:"Futrono",date:"4 dic.",day:10},
+  {name:"Bulnes",date:"9 dic.",day:15}
+];
+$("route-strip").innerHTML=routes.map(r=>"<button type='button' class='stop' data-jump='"+r.day+"' aria-label='Ver "+esc(r.name)+" el "+esc(r.date)+"'><small>"+esc(r.date)+"</small><strong>"+esc(r.name)+"</strong></button>").join("");
+const tabs=[["days","days-panel","tab-days"],["stays","stays-panel","tab-stays"],["weather","weather-panel","tab-weather"]];
+function selectTab(name,save){
+ tabs.forEach(([n,p,t])=>{const on=n===name;$(p).hidden=!on;$(t).classList.toggle("active",on);$(t).setAttribute("aria-selected",String(on));$(t).tabIndex=on?0:-1;});
+ if(name==="weather")document.dispatchEvent(new Event("trip-weather-open"));
+ if(save)history.replaceState(null,"","#"+name);
+}
+tabs.forEach(([n,p,t],i)=>{
+ $(t).addEventListener("click",()=>selectTab(n,true));
+ $(t).addEventListener("keydown",e=>{
+  if(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")return;
+  e.preventDefault();const j=(i+(e.key==="ArrowRight"?1:tabs.length-1))%tabs.length;
+  selectTab(tabs[j][0],true);$(tabs[j][2]).focus();
+ });
+});
+const hash=location.hash.slice(1);
+selectTab(tabs.some(t=>t[0]===hash)?hash:"days",false);
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(tabs.some(t=>t[0]===h))selectTab(h,false);});
+let selectedDay=1;
+function renderDayList(){
+ let month="";
+ $("day-list").innerHTML=trip.days.map(d=>{
+  const currentMonth=d.date.includes("nov")?"Noviembre":"Diciembre";
+  const head=currentMonth!==month?"<p class='month-head'>"+currentMonth+"</p>":"";
+  month=currentMonth;
+  return head+"<button type='button' class='day-opt"+(d.country==="Argentina"?" argentina":"")+(d.flag||d.optionalStop?" risky":"")+"' data-day='"+d.day+"' aria-pressed='false'>"+
+   "<span class='day-opt-num'>"+String(d.day).padStart(2,"0")+"</span>"+
+   "<span class='day-opt-info'><span class='day-opt-date'>"+esc(d.date)+" · "+(d.travel?"Traslado":"Base")+"</span><span class='day-opt-title'>"+esc(d.destination)+"</span></span>"+
+   "<span class='day-opt-dot' aria-hidden='true'></span></button>";
+ }).join("");
+}
+function setDay(day){
+ const d=trip.days.find(x=>x.day===Number(day));if(!d)return;
+ selectedDay=d.day;
+ $("day-list").querySelectorAll("button[data-day]").forEach(el=>{
+  const active=Number(el.dataset.day)===selectedDay;el.classList.toggle("active",active);el.setAttribute("aria-pressed",String(active));
+ });
+ const ferry=d.day===5;
+ const points=ferry?["Puerto Pirehueico, Chile","Paso Hua Hum, Argentina","San Martín de los Andes, Argentina"]:(d.mapWaypoints?.length?d.mapWaypoints:[d.origin,d.destination]);
+ const link=d.travel?directions(points):mapSearch(d.destination+", "+d.country);
+ const stops=(d.visits||"").split("·").map(s=>s.trim()).filter(Boolean);
+ $("day-detail").innerHTML=
+ "<div class='focus-top'><span class='focus-day'>Día "+String(d.day).padStart(2,"0")+" / "+trip.days.length+" · "+esc(d.date)+"</span><span class='type-tag"+(d.travel?" travel":"")+"'>"+(d.travel?"Traslado":"Día base")+"</span></div>"+
+ "<h3 class='focus-title'>"+esc(d.title)+"</h3>"+
+ "<p class='focus-summary'>"+esc(d.desc||"")+"</p>"+
+ "<div class='focus-metrics'><div class='focus-metric'><span>Distancia estimada</span><strong>"+esc(d.km||"—")+"</strong></div><div class='focus-metric'><span>País</span><strong>"+esc(d.country)+"</strong></div></div>"+
+ "<h4 class='focus-section-title'>Paradas y lugares</h4><div class='visits'>"+stops.map(v=>"<span class='visit'>"+esc(v)+"</span>").join("")+"</div>"+
+ (d.flag?"<p class='alert'><strong>Revisar tramo:</strong> condiciones de ruta o frontera pendientes.</p>":"")+
+ (d.optionalStop?"<p class='alert'><strong>"+esc(d.optionalStop.name)+" (opcional):</strong> "+esc(d.optionalStop.warning)+"</p>":"")+
+ (ferry?"<p class='alert'><strong>Barcaza:</strong> el tramo Puerto Fuy–Puerto Pirehueico no está incluido en el enlace terrestre.</p>":"")+
+ "<div class='focus-foot'><div class='focus-actions'><a class='action' href='"+esc(link)+"' rel='noopener noreferrer' target='_blank'>"+(d.travel?"Abrir ruta":"Ver localidad")+" "+arrow+"</a>"+
+ (d.optionalStop?"<a class='action secondary' rel='noopener noreferrer' target='_blank' href='"+esc(mapSearch(d.optionalStop.name+", "+d.optionalStop.country))+"'>Villa Traful "+arrow+"</a>"+
+ "<a class='action secondary' rel='noopener noreferrer' target='_blank' href='"+esc(d.optionalStop.roadInfoUrl)+"'>Estado RP65 "+arrow+"</a>":"")+
+ "</div><div class='focus-nav'><button type='button' data-move='-1' "+(selectedDay===1?"disabled":"")+">← Día anterior</button><button type='button' data-move='1' "+(selectedDay===trip.days.length?"disabled":"")+">Día siguiente →</button></div></div>";
+}
+renderDayList();
+const getToday=()=>{
+ const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"America/Santiago",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
+ const v=Object.fromEntries(parts.map(x=>[x.type,x.value]));return v.year+"-"+v.month+"-"+v.day;
+};
+const dateToDay=date=>{
+ const m=date.match(/^2026-(11|12)-(\d{2})$/);if(!m)return 1;
+ const d=+m[2];if(m[1]==="11"&&d>=25)return Math.min(6,d-24);
+ if(m[1]==="12"&&d<=11)return Math.min(17,d+6);
+ return 1;
+};
+setDay(dateToDay(getToday()));
+$("day-list").addEventListener("click",e=>{const b=e.target.closest("button[data-day]");if(b)setDay(b.dataset.day);});
+$("day-detail").addEventListener("click",e=>{const b=e.target.closest("button[data-move]");if(b)setDay(selectedDay+Number(b.dataset.move));});
+$("route-strip").addEventListener("click",e=>{
+ const b=e.target.closest("button[data-jump]");if(!b)return;
+ selectTab("days",true);setDay(b.dataset.jump);
+ const target=$("days-panel");target.scrollIntoView({behavior:"smooth",block:"start"});
+});
+$("stay-strip").innerHTML=trip.stays.map((s,i)=>"<button type='button' class='stay-seg"+(s.country==="Argentina"?" argentina":"")+"' style='flex-grow:"+Number(s.nights||1)+"' data-stay='"+i+"' data-num='"+(i+1)+"' title='"+esc(s.name+" · "+s.nights+" noche(s)")+"' aria-label='Ver "+esc(s.name)+", "+esc(s.nights)+" noches'></button>").join("");
 $("stay-list").innerHTML=trip.stays.map((s,i)=>{
-const q=s.name+", "+s.country;
-return "<details class='entry"+(s.country==="Argentina"?" argentina":"")+"'><summary>"+
-"<span class='serial'>"+number(i+1)+"</span><span class='entry-main'>"+
-"<span class='entry-meta'>"+esc(s.llegada)+" — "+esc(s.salida)+countryTag(s.country)+"</span>"+
-"<span class='entry-title'>"+esc(s.name)+"</span>"+
-"<span class='entry-preview'>"+esc(s.visitas)+"</span></span>"+
-"<span class='entry-side'><strong>"+esc(s.nights)+" "+(Number(s.nights)===1?"noche":"noches")+"</strong><small>Estadía</small></span>"+
-"<span class='chevron' aria-hidden='true'>⌄</span></summary>"+
-"<div class='entry-details'><p class='detail-line'><b>Visitas:</b> "+esc(s.visitas)+"</p>"+
-"<p class='detail-line'><b>Reserva:</b> "+esc(s.estado||"Por reservar")+"</p>"+
-"<div class='detail-actions'><a class='detail-action' href='"+esc(mapSearch(q))+"' target='_blank' rel='noopener noreferrer'>Ver en Google Maps "+arrowIcon+"</a></div></div></details>";
+ const search=mapSearch(s.name+", "+s.country);
+ return "<details class='stay-card' data-stay-card='"+i+"'><summary><div class='stay-card-top'><span class='stay-index'>Base "+String(i+1).padStart(2,"0")+" · "+esc(s.country)+"</span><span class='stay-dates'>"+esc(s.llegada)+" — "+esc(s.salida)+"</span></div>"+
+ "<h3>"+esc(s.name)+"</h3><div class='stay-details-line'><span>"+esc(s.dates)+"</span><span class='stay-night'>"+esc(s.nights)+" "+(Number(s.nights)===1?"noche":"noches")+"</span></div>"+
+ "<span class='stay-card-preview'>"+esc(s.visitas)+"</span><div class='stay-card-bottom'><span>"+esc(s.estado||"Por reservar")+"</span><span class='stay-open'>Ver detalles ↗</span></div></summary>"+
+ "<div class='stay-expanded'><p><b>Visitas:</b> "+esc(s.visitas)+"</p><p><b>Reserva:</b> "+esc(s.estado||"Por reservar")+"</p><a class='action secondary' href='"+esc(search)+"' rel='noopener noreferrer' target='_blank'>Google Maps "+arrow+"</a></div></details>";
 }).join("");
-$("day-list").innerHTML=trip.days.map(d=>{
-const ferry=d.day===5;
-const points=ferry?["Puerto Pirehueico, Chile","Paso Hua Hum, Argentina","San Martín de los Andes, Argentina"]:(d.mapWaypoints?.length?d.mapWaypoints:[d.origin,d.destination]);
-const link=d.travel?directions(points):mapSearch(d.destination+", "+d.country);
-return "<details class='entry"+(d.country==="Argentina"?" argentina":"")+"'><summary>"+
-"<span class='serial'>"+number(d.day)+"</span><span class='entry-main'>"+
-"<span class='entry-meta'>"+esc(d.date)+countryTag(d.country)+"</span>"+
-"<span class='entry-title'>"+esc(d.title)+"</span>"+
-"<span class='entry-preview'>"+esc(d.visits||"Sin visitas programadas")+"</span></span>"+
-"<span class='entry-side'><strong>"+esc(String(d.km||"—").replace(/^≈\s*/,""))+"</strong><small>Distancia aprox.</small></span>"+
-"<span class='chevron' aria-hidden='true'>⌄</span></summary>"+
-"<div class='entry-details'><p class='detail-line'><b>Paradas:</b> "+esc(d.visits)+"</p>"+
-(d.desc?"<p class='detail-line'>"+esc(d.desc)+"</p>":"")+
-(d.flag?"<p class='detail-alert'>Tramo pendiente de revisión</p>":"")+
-(d.optionalStop?"<p class='detail-alert'>"+esc(d.optionalStop.warning)+"</p>":"")+
-(ferry?"<p class='detail-line'>La barcaza Puerto Fuy–Puerto Pirehueico no está incluida en el enlace vial.</p>":"")+
-"<div class='detail-actions'><a class='detail-action' href='"+esc(link)+"' target='_blank' rel='noopener noreferrer'>"+(d.travel?"Abrir ruta":"Ver localidad")+" "+arrowIcon+"</a>"+
-(d.optionalStop?"<a class='detail-action secondary' href='"+esc(mapSearch(d.optionalStop.name+", "+d.optionalStop.country))+"' target='_blank' rel='noopener noreferrer'>Ver "+esc(d.optionalStop.name)+" "+arrowIcon+"</a><a class='detail-action secondary' href='"+esc(d.optionalStop.roadInfoUrl)+"' target='_blank' rel='noopener noreferrer'>Estado RP65 "+arrowIcon+"</a>":"")+
-"</div></div></details>";
-}).join("");
+$("stay-strip").addEventListener("click",e=>{
+ const b=e.target.closest("button[data-stay]");if(!b)return;
+ const card=$("stay-list").querySelector("[data-stay-card='"+b.dataset.stay+"']");
+ if(card){card.open=true;card.scrollIntoView({behavior:"smooth",block:"center"});}
+});
 $("share").addEventListener("click",async()=>{
-const link=location.href.split("#")[0];
-if(navigator.share){try{await navigator.share({title:"Viaje en moto 2026",url:link});return}catch(e){if(e.name==="AbortError")return}}
-try{await navigator.clipboard.writeText(link);const t=$("share").querySelector("span");t.textContent="Copiado";setTimeout(()=>t.textContent="Compartir",1600)}
-catch(e){prompt("Enlace:",link)}
+ const link=location.href.split("#")[0];
+ if(navigator.share){try{await navigator.share({title:"Viaje en moto 2026",url:link});return}catch(e){if(e.name==="AbortError")return;}}
+ try{await navigator.clipboard.writeText(link);const label=$("share").querySelector("span");label.textContent="Copiado";setTimeout(()=>label.textContent="Compartir",1500);}
+ catch(e){prompt("Enlace:",link);}
 });
 })();
 </script>
