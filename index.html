@@ -1,253 +1,264 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8fa">
-  <meta name="description" content="Itinerario, alojamientos, mapa y bitácora del viaje en moto del 25 de noviembre al 11 de diciembre de 2026.">
-  <title>Viaje en moto 2026 · Calendario y ruta</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzx3w3dXcWBWqPWK4x8KUrEo0=" crossorigin="">
-  <style>
-    :root{--bg:#f7f8fa;--paper:#fff;--text:#19242e;--muted:#65717c;--line:#dce3e9;--accent:#215977;--soft:#edf5f8;--warn:#78541d}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:var(--accent)}
-    button,input,textarea,select{font:inherit}
-    .wrap{width:min(1040px,calc(100% - 32px));margin:auto}
-    .topbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100}
-    .topin{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0}
-    .brand{font-size:14px;font-weight:800;color:var(--text);text-decoration:none;white-space:nowrap}
-    nav{display:flex;align-items:center;flex-wrap:wrap;gap:15px}
-    nav a{font-size:12px;text-decoration:none;font-weight:600}
-    .share,.action{border:1px solid var(--line);background:white;color:var(--text);border-radius:8px;padding:7px 11px;cursor:pointer;font-size:12px;font-weight:650}
-    .share:hover,.action:hover{background:var(--soft)}
-    main{padding:28px 0 44px}
-    h1{font-size:clamp(24px,3vw,32px);line-height:1.2;letter-spacing:-.7px;margin:0 0 6px}
-    h2{font-size:19px;margin:0;font-weight:750;letter-spacing:-.3px}
-    h3{font-size:15px;margin:0}
-    p{margin:0}
-    .sub{color:var(--muted);font-size:13px}
-    .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-    .meta span{background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:7px 11px;font-weight:650;font-size:12px}
-    .panel{background:var(--paper);border:1px solid var(--line);border-radius:11px;overflow:hidden}
-    section{margin-top:26px;scroll-margin-top:80px}
-    .section-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;flex-wrap:wrap}
-    .section-header .sub{font-size:12px}
-    .alert{display:flex;align-items:flex-start;gap:11px;border:1px solid #e6d7b9;background:#fffaf0;border-radius:9px;padding:11px 14px;margin-top:15px;color:#664b25;font-size:12px;line-height:1.6}
-    .alert b{white-space:nowrap}
-    .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    table{width:100%;border-collapse:collapse;text-align:left;font-size:12px}
-    th{background:#f2f5f7;color:#3c4c5a;font-size:11px;font-weight:750}
-    th,td{padding:12px 13px;border-bottom:1px solid var(--line);vertical-align:top}
-    tbody tr:last-child td{border-bottom:0}
-    td.place{font-weight:750;white-space:nowrap}
-    .nowrap{white-space:nowrap}
-    .status{color:#6c5961}
-    .daylist{display:grid}
-    .dayentry{border-bottom:1px solid var(--line)}
-    .dayentry:last-child{border:0}
-    .dayentry summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:88px minmax(0,1fr) 110px 18px;align-items:center;gap:10px;padding:13px 15px}
-    .dayentry summary::-webkit-details-marker{display:none}
-    .dayentry summary:hover{background:#f7f9fb}
-    .dayentry summary:after{content:"⌄";color:var(--muted);font-size:16px}
-    .dayentry[open] summary{background:var(--soft)}
-    .day-date{font-size:12px;font-weight:750}
-    .day-route{font-size:13px;font-weight:700;min-width:0}
-    .day-km{text-align:right;font-size:12px;color:var(--muted)}
-    .day-detail{padding:1px 15px 17px 113px;font-size:12px;display:grid;gap:8px}
-    .day-detail .notes{color:var(--muted)}
-    .risk{color:var(--warn);font-weight:650}
-    .mapbox{height:320px;background:#edf1f2}
-    .map-foot{padding:9px 12px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
-    .journal{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:16px}
-    .journal >div{min-width:0}
-    .journal p{font-size:12px;color:var(--muted);margin:7px 0 12px}
-    .entry{border-bottom:1px solid var(--line);padding:10px 0}
-    .entry:last-child{border:0}
-    .entry .sub{font-size:11px}
-    .entry img{max-width:100%;max-height:200px;object-fit:cover;border-radius:7px;margin-top:8px}
-    .journal details{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fafbfc}
-    .journal summary{cursor:pointer;font-weight:750}
-    .fields{display:grid;gap:10px;margin-top:13px}
-    label{display:grid;gap:4px;font-size:12px;font-weight:650}
-    input,select,textarea{width:100%;padding:9px 10px;border:1px solid #cbd5de;border-radius:7px;background:white;color:var(--text)}
-    textarea{min-height:100px;resize:vertical}
-    .btnrow{display:flex;gap:7px;flex-wrap:wrap}
-    .note{font-size:11px;color:var(--muted);margin-top:8px}
-    footer{border-top:1px solid var(--line);padding:16px 0 25px;color:var(--muted);font-size:11px}
-    @media(max-width:680px){
-      .topin{align-items:flex-start;flex-wrap:wrap;padding:10px 0}
-      nav{width:100%;gap:14px}
-      nav a{font-size:11px}
-      main{padding-top:20px}
-      th,td{padding:10px 12px}
-      .scroll table{min-width:720px}
-      .dayentry summary{grid-template-columns:57px minmax(0,1fr) 68px 12px;gap:7px;padding:12px 10px}
-      .day-route{font-size:12px}
-      .day-km{font-size:11px}
-      .day-detail{padding:2px 12px 15px}
-      .journal{grid-template-columns:1fr;padding:13px}
-      .alert{display:block}
-      .mapbox{height:285px}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f7f9">
+<meta name="description" content="Plan de viaje en moto: fechas, alojamientos, visitas, mapa y bitácora. 25 de noviembre al 11 de diciembre de 2026.">
+<title>Viaje en moto 2026 | Plan de viaje</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--ink:#202936;--muted:#637083;--border:#dce2ea;--blue:#175e8e;--soft:#ecf4fa;--warn:#795314;--radius:10px}
+*{box-sizing:border-box}html{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}body{background:var(--bg);color:var(--ink);margin:0;font-size:14px;line-height:1.45}
+button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:var(--blue)}
+.wrapper{width:min(100% - 28px,1060px);margin:0 auto}
+header{background:var(--surface);border-bottom:1px solid var(--border)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0}
+h1{font-size:20px;line-height:1.2;letter-spacing:-.4px;margin:0;font-weight:750}
+.sub{font-size:12px;color:var(--muted);margin:5px 0 0}
+.share{padding:8px 12px;background:white;border:1px solid var(--border);border-radius:7px;font-size:12px;font-weight:700;white-space:nowrap}
+main{padding:18px 0 30px}
+.metrics{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:15px}
+.metrics span{border:1px solid var(--border);background:#fff;border-radius:6px;font-size:12px;padding:6px 9px}
+.flag{background:#fff9ee;border:1px solid #e9d8b1;border-radius:var(--radius);color:var(--warn);padding:9px 12px;font-size:12px;line-height:1.5;margin-bottom:16px}
+.flag summary{cursor:pointer;font-weight:700}
+.flag p{margin:7px 0 0}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:9px;overflow:hidden;background:var(--surface);margin-bottom:13px}
+.tab{border:0;border-right:1px solid var(--border);background:transparent;color:var(--muted);padding:12px 6px;font-weight:650;font-size:12px}
+.tab:last-child{border-right:0}.tab[aria-selected="true"]{color:var(--blue);background:var(--soft);box-shadow:inset 0 -3px var(--blue)}
+.panel{display:none;border:1px solid var(--border);background:var(--surface);border-radius:var(--radius);overflow:hidden;min-height:240px}
+.panel.active{display:block}
+.panel-head{padding:13px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.panel-head h2{margin:0;font-size:15px}.panel-head p{margin:0;font-size:11px;color:var(--muted)}
+.row{border-bottom:1px solid var(--border)}.row:last-child{border-bottom:0}
+.row summary{list-style:none;cursor:pointer;padding:11px 14px;display:grid;gap:10px;align-items:center}
+.row summary::-webkit-details-marker{display:none}
+.row summary:after{content:"⌄";font-size:15px;text-align:right;color:#778397}
+.row[open] summary{background:#f2f7fb}
+.place-row summary{grid-template-columns:99px minmax(0,1fr) 61px 13px}
+.day-row summary{grid-template-columns:69px minmax(0,1fr) 79px 13px}
+.strong{font-weight:700;font-size:13px}.muted{color:var(--muted);font-size:12px}
+.small{font-size:11px;color:var(--muted)}.right{text-align:right;white-space:nowrap}
+.row-detail{padding:10px 14px 14px;background:#fbfcfd;display:grid;gap:7px;font-size:12px}
+.row-detail p{margin:0}.row-detail .muted{line-height:1.55}
+.note{color:var(--muted);font-size:11px;padding:11px 15px;border-top:1px solid var(--border);margin:0}
+.country{display:inline-block;font-size:10px;font-weight:650;border-radius:4px;background:#edf2f5;padding:2px 5px;color:#556475}
+.warning{color:#93662a;font-size:12px;font-weight:650}
+.route-map{padding:12px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.8fr);gap:12px}
+.map-visual{border:1px solid var(--border);border-radius:9px;background:#f0f4f7;padding:5px;overflow:hidden}
+.map-visual svg{display:block;width:100%;height:auto;max-height:460px}
+.map-list{display:flex;flex-direction:column;gap:7px}
+.map-list h3{margin:1px 0 5px;font-size:13px}
+.link-row{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--border);border-radius:7px;padding:9px 11px;background:white}
+.link-row b{font-size:12px}.link-row span{font-size:11px;color:var(--muted)}
+.link-row a{font-weight:700;font-size:12px;white-space:nowrap}
+.map-help{font-size:11px;color:var(--muted);line-height:1.5;margin:5px 0}
+.diary{padding:15px;display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.diary h3{font-size:14px;margin:0 0 5px}
+.diary p{font-size:12px;color:var(--muted);margin:3px 0 10px}
+.diary details{border:1px solid var(--border);padding:13px;border-radius:9px}
+.diary details summary{font-weight:650;cursor:pointer}
+.fields{display:grid;gap:10px;margin-top:12px}
+.fields label{font-weight:650;font-size:12px;display:grid;gap:5px}
+.fields input,.fields select,.fields textarea{width:100%;border:1px solid var(--border);border-radius:6px;padding:9px;background:#fff;color:var(--ink)}
+.fields textarea{min-height:90px;resize:vertical}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.actions button{border:1px solid var(--border);background:white;padding:8px 11px;border-radius:6px;font-size:12px;font-weight:650}
+.entry{border-bottom:1px solid var(--border);padding:9px 0}.entry:last-child{border-bottom:0}.entry img{max-width:100%;max-height:200px;object-fit:cover;border-radius:6px;margin:8px 0 0}
+footer{font-size:11px;color:var(--muted);padding:15px 0 23px}
+@media(max-width:700px){
+.route-map{grid-template-columns:1fr}
+.map-visual svg{max-height:365px}
+}
+@media(max-width:420px){
+.wrapper{width:calc(100% - 22px)}
+.place-row summary{grid-template-columns:79px minmax(0,1fr) 42px 12px;gap:7px;padding:11px 10px}
+.day-row summary{grid-template-columns:54px minmax(0,1fr) 61px 12px;gap:6px;padding:11px 10px}
+.strong{font-size:12px}.muted{font-size:11px}
+.row-detail{padding:10px}.tab{padding:10px 1px;font-size:11px}
+.diary{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-<header class="topbar">
-  <div class="wrap topin">
-    <a href="#inicio" class="brand">Viaje en moto · 2026</a>
-    <nav aria-label="Secciones">
-      <a href="#calendario">Calendario</a>
-      <a href="#dias">Día a día</a>
-      <a href="#mapa">Mapa</a>
-      <a href="#bitacora">Bitácora</a>
-      <button type="button" class="share" id="share">Compartir</button>
-    </nav>
+<header>
+  <div class="wrapper top">
+    <div><h1>Viaje en moto · 2026</h1><p class="sub">25 nov. – 11 dic. · Chile / Argentina</p></div>
+    <button type="button" id="share" class="share">Compartir</button>
   </div>
 </header>
-<main class="wrap" id="inicio">
-  <h1>Plan de viaje</h1>
-  <p class="sub">25 de noviembre al 11 de diciembre de 2026 · Chile y Argentina</p>
-  <div class="meta" id="stats"></div>
-  <div class="alert"><b>Por definir:</b> <span>El paso Hua Hum incluye ripio. Confirmar también pavimento hacia Maihue y kilometraje del tramo Bariloche → Futrono (podría superar 350 km).</span></div>
-
-  <section id="calendario">
-    <div class="section-header"><h2>Calendario de alojamientos</h2><span class="sub">Estancias previstas · ninguna reserva confirmada</span></div>
-    <div class="panel scroll">
-      <table aria-label="Calendario de alojamientos">
-        <thead><tr><th>Llegada</th><th>Salida</th><th>Lugar</th><th>Noches</th><th>Visitas previstas</th><th>Reserva</th></tr></thead>
-        <tbody id="calendarRows"></tbody>
-      </table>
-    </div>
-    <p class="note">Presupuesto objetivo: máximo US$45 por noche por habitación privada.</p>
+<main class="wrapper">
+  <div class="metrics" id="metrics"></div>
+  <details class="flag">
+    <summary>3 puntos pendientes de definir</summary>
+    <p>Hua Hum tiene tramos de ripio; confirmar el acceso pavimentado hasta Maihue; validar la distancia Bariloche–Futrono (podría superar 350 km).</p>
+  </details>
+  <div class="tabs" role="tablist" aria-label="Información del viaje">
+    <button class="tab" id="tab-calendar" type="button" role="tab" aria-controls="calendar" aria-selected="true">Alojamientos</button>
+    <button class="tab" id="tab-days" type="button" role="tab" aria-controls="days" aria-selected="false">Día a día</button>
+    <button class="tab" id="tab-map" type="button" role="tab" aria-controls="map" aria-selected="false">Mapa</button>
+    <button class="tab" id="tab-diary" type="button" role="tab" aria-controls="diary" aria-selected="false">Bitácora</button>
+  </div>
+  <section class="panel active" id="calendar" role="tabpanel" aria-labelledby="tab-calendar">
+    <div class="panel-head"><h2>Calendario de alojamientos</h2><p>9 bases · 16 noches</p></div>
+    <div id="stays"></div>
+    <p class="note">Presupuesto: hasta US$45 por noche por habitación privada. Reservas todavía no confirmadas.</p>
   </section>
-
-  <section id="dias">
-    <div class="section-header"><h2>Itinerario diario</h2><span class="sub">Toca una jornada para ver visitas y observaciones</span></div>
-    <div class="panel daylist" id="dayRows"></div>
-    <p class="note">Distancias estimadas, no validadas con trazado GPS. La ida y vuelta a Santiago son excepciones al objetivo habitual de 350 km diarios.</p>
+  <section class="panel" id="days" role="tabpanel" aria-labelledby="tab-days">
+    <div class="panel-head"><h2>17 jornadas</h2><p>Selecciona un día para ver detalles</p></div>
+    <div id="day-list"></div>
+    <p class="note">Kilómetros aproximados. Los tramos terrestres indicados en Google Maps pueden incluir caminos que deben verificarse antes de circular.</p>
   </section>
-
-  <section id="mapa">
-    <div class="section-header"><h2>Mapa de bases</h2><span class="sub">Ubicaciones orientativas, no navegación GPS</span></div>
-    <div class="panel">
-      <div id="mapView" class="mapbox" role="application" aria-label="Mapa interactivo con las bases de alojamiento"></div>
-      <div class="map-foot">Las líneas discontinuas unen puntos, no siguen carreteras. La conexión Puerto Fuy–Puerto Pirehueico corresponde a la barcaza.</div>
-    </div>
-  </section>
-
-  <section id="bitacora">
-    <div class="section-header"><h2>Bitácora</h2><span class="sub">Registro de cada jornada</span></div>
-    <div class="panel journal">
-      <div>
-        <h3>Entradas publicadas</h3>
-        <p>Notas y fotos visibles para quienes tengan el enlace.</p>
-        <div id="published"></div>
+  <section class="panel" id="map" role="tabpanel" aria-labelledby="tab-map">
+    <div class="panel-head"><h2>Mapa de la ruta</h2><p>Marcadores y conexiones orientativas</p></div>
+    <div class="route-map">
+      <div class="map-visual" id="route-visual" aria-label="Mapa esquemático del recorrido entre Chile y Argentina"></div>
+      <div class="map-list">
+        <h3>Tramos en mapas viales</h3>
+        <div id="map-links"></div>
+        <p class="map-help">El gráfico muestra la ubicación relativa de las bases. No sigue el trazado de las carreteras. Los enlaces abren los tramos terrestres en Google Maps.</p>
       </div>
+    </div>
+  </section>
+  <section class="panel" id="diary" role="tabpanel" aria-labelledby="tab-diary">
+    <div class="panel-head"><h2>Bitácora de viaje</h2><p>Notas y fotos por día</p></div>
+    <div class="diary">
+      <div><h3>Entradas compartidas</h3><div id="entries"></div></div>
       <div>
         <details>
-          <summary>Escribir nota del viaje</summary>
-          <p>Los borradores quedan solo en este dispositivo. Exporta el archivo para conservarlos o publicarlos después.</p>
+          <summary>Crear nota privada</summary>
+          <p>Los borradores quedan solo en este navegador. Puedes exportarlos en JSON para conservarlos y publicarlos después.</p>
           <div class="fields">
-            <label>Fecha<select id="noteDay"></select></label>
-            <label>Título<input id="noteTitle" maxlength="100" placeholder="Ej.: Día en Bariloche"></label>
-            <label>Nota<textarea id="noteText" maxlength="10000" placeholder="Qué hicimos, dónde fuimos..."></textarea></label>
-            <label>Enlace de foto (opcional)<input id="notePhoto" type="url" placeholder="https://..."></label>
-            <div class="btnrow">
-              <button type="button" class="action" id="saveNote">Guardar en este dispositivo</button>
-              <button type="button" class="action" id="exportNote">Exportar notas</button>
-            </div>
-            <span class="note" id="noteStatus" role="status"></span>
+            <label>Jornada<select id="note-day"></select></label>
+            <label>Título<input id="note-title" maxlength="100" placeholder="Título de la nota"></label>
+            <label>Descripción<textarea id="note-text" maxlength="10000" placeholder="Resumen del día"></textarea></label>
+            <label>URL de foto (opcional)<input id="note-photo" type="url" placeholder="https://..."></label>
+            <div class="actions"><button id="save-note" type="button">Guardar borrador</button><button id="export-note" type="button">Exportar notas</button></div>
+            <p class="small" id="note-status" role="status"></p>
           </div>
         </details>
       </div>
     </div>
   </section>
 </main>
-<footer><div class="wrap">Calendario editable en <a href="https://github.com/jartazaf/travesia-lagos-2026" target="_blank" rel="noopener noreferrer">GitHub</a> · Datos de planificación sujetos a cambios.</div></footer>
-<script src="./route-data.js"></script>
-<script src="./journal-data.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<footer class="wrapper">Plan editable en <a href="https://github.com/jartazaf/travesia-lagos-2026" target="_blank" rel="noopener noreferrer">GitHub</a> · Información provisional, sujeta a cambios.</footer>
+<script src="./route-data.js?v=4"></script>
+<script src="./journal-data.js?v=4"></script>
 <script>
 (function(){
   "use strict";
+  const $=id=>document.getElementById(id);
   const trip=window.TRIP_DATA;
-  const get=id=>document.getElementById(id);
-  const safe=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  const nights=trip.stays.reduce((sum,s)=>sum+Number(s.nights||0),0);
-  get("stats").innerHTML=[
-    trip.days.length+" días",
-    nights+" noches",
-    trip.stays.length+" alojamientos",
-    "Argentina: San Martín y Bariloche"
-  ].map(x=>"<span>"+safe(x)+"</span>").join("");
-  get("calendarRows").innerHTML=trip.stays.map(s=>
-    "<tr><td class='nowrap'>"+safe(s.llegada)+"</td><td class='nowrap'>"+safe(s.salida)+"</td><td class='place'>"+safe(s.name)+"</td><td>"+safe(s.nights)+"</td><td>"+safe(s.visitas)+"</td><td class='status nowrap'>"+safe(s.estado)+"</td></tr>"
-  ).join("");
-  const mapsUrl=d=>{
-    const parts=Array.isArray(d.mapWaypoints)&&d.mapWaypoints.length?d.mapWaypoints:[d.origin,d.destination];
-    if(!d.travel||parts.length<2)return null;
-    const first=parts[0],last=parts[parts.length-1],via=parts.slice(1,-1);
-    const params=new URLSearchParams({api:"1",origin:first,destination:last,travelmode:"driving"});
-    if(via.length)params.set("waypoints",via.join("|"));
-    return "https://www.google.com/maps/dir/?"+params.toString();
+  if(!trip){$("stays").textContent="No se pudieron cargar los datos del viaje.";return}
+  const html=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const mapDirections=(stops)=>{
+    const q=new URLSearchParams({api:"1",origin:stops[0],destination:stops[stops.length-1],travelmode:"driving"});
+    if(stops.length>2)q.set("waypoints",stops.slice(1,-1).join("|"));
+    return "https://www.google.com/maps/dir/?"+q.toString();
   };
-  get("dayRows").innerHTML=trip.days.map(d=>{
-    const url=mapsUrl(d);
-    return "<details class='dayentry'><summary><span class='day-date'>"+safe(d.date)+"</span><span class='day-route'>"+safe(d.title)+"</span><span class='day-km'>"+safe(d.km)+"</span></summary>"
-      +"<div class='day-detail'><div><b>Visitas:</b> "+safe(d.visits||"Sin visitas programadas")+"</div>"
-      +(d.desc?"<div class='notes'>"+safe(d.desc)+"</div>":"")
-      +(d.flag?"<div class='risk'>Requiere revisión de la ruta</div>":"")
-      +(url?"<div><a href='"+safe(url)+"' target='_blank' rel='noopener noreferrer'>Ver tramo en Google Maps</a>"+(d.day===5?" <span class='notes'>(solo tramo terrestre desde Puerto Pirehueico)</span>":"")+"</div>":"")
-      +"</div></details>";
+  const stayTotal=trip.stays.reduce((n,s)=>n+Number(s.nights||0),0);
+  $("metrics").innerHTML=[trip.days.length+" días",stayTotal+" noches",trip.stays.length+" bases","Tope US$45 / noche"].map(x=>"<span>"+html(x)+"</span>").join("");
+  const tabs=[["calendar","tab-calendar"],["days","tab-days"],["map","tab-map"],["diary","tab-diary"]];
+  function activate(id){
+    for(const [pid,tid] of tabs){const on=pid===id;$(pid).classList.toggle("active",on);$(tid).setAttribute("aria-selected",String(on));$(tid).tabIndex=on?0:-1}
+    if(location.hash!=="#"+id)history.replaceState(null,"","#"+id);
+  }
+  for(const [pid,tid] of tabs)$(tid).addEventListener("click",()=>activate(pid));
+  const initial=location.hash.slice(1);
+  if(tabs.some(([p])=>p===initial))activate(initial);
+  $("stays").innerHTML=trip.stays.map((s,i)=>"<details class='row place-row'><summary><span class='muted'>"+html(s.llegada)+"<br>→ "+html(s.salida)+"</span><span><span class='strong'>"+html(s.name)+"</span> <span class='country'>"+html(s.country)+"</span></span><span class='right muted'>"+html(s.nights)+"n</span></summary><div class='row-detail'><p><b>Visitas:</b> "+html(s.visitas)+"</p><p><b>Reserva:</b> "+html(s.estado||"Por reservar")+"</p></div></details>").join("");
+  $("day-list").innerHTML=trip.days.map(d=>{
+    const link=d.travel&&d.day!==5?mapDirections((d.mapWaypoints&&d.mapWaypoints.length?d.mapWaypoints:[d.origin,d.destination])):d.day===5?mapDirections(["Puerto Pirehueico, Chile","Paso Hua Hum, Argentina","San Martín de los Andes, Argentina"]):null;
+    return "<details class='row day-row'><summary><span class='muted'>"+html(d.date)+"</span><span class='strong'>"+html(d.title)+"</span><span class='right muted'>"+html(d.km)+"</span></summary><div class='row-detail'><p><b>Visitas:</b> "+html(d.visits)+"</p><p class='muted'>"+html(d.desc)+"</p>"+(d.flag?"<p class='warning'>Revisar condiciones del tramo</p>":"")+(link?"<p><a href='"+html(link)+"' target='_blank' rel='noopener noreferrer'>Abrir tramo en Google Maps</a></p>":"")+"</div></details>";
   }).join("");
-  const entries=(window.TRIP_JOURNAL||[]).filter(e=>e&&e.text);
-  const urlPhoto=v=>{try{const u=new URL(v);return ["https:","http:"].includes(u.protocol)?u.href:null}catch{return null}};
-  get("published").innerHTML=entries.length?entries.map(e=>
-    "<article class='entry'><b>"+safe(e.title||"Nota")+" · Día "+safe(e.day)+"</b><p>"+safe(e.text)+"</p>"+(urlPhoto(e.photo)?"<img loading='lazy' alt='Foto del viaje' src='"+safe(urlPhoto(e.photo))+"'>":"")+"</article>"
-  ).join(""):"<p>Sin entradas todavía.</p>";
-  get("noteDay").innerHTML=trip.days.map(d=>"<option value='"+Number(d.day)+"'>"+safe(d.date)+" · "+safe(d.title)+"</option>").join("");
-  const key="travesia-lagos-journal-drafts-v1";
-  let drafts={};try{drafts=JSON.parse(localStorage.getItem(key)||"{}")||{}}catch(e){}
-  function loadNote(){const d=drafts[get("noteDay").value]||{};get("noteTitle").value=d.title||"";get("noteText").value=d.text||"";get("notePhoto").value=d.photo||"";}
-  get("noteDay").addEventListener("change",loadNote);loadNote();
-  get("saveNote").addEventListener("click",function(){
-    const day=get("noteDay").value,text=get("noteText").value.trim();
-    if(!text){get("noteStatus").textContent="Escribe una nota antes de guardar.";return}
-    drafts[day]={day:Number(day),title:get("noteTitle").value.trim()||"Notas",text,photo:urlPhoto(get("notePhoto").value)||""};
-    try{localStorage.setItem(key,JSON.stringify(drafts));get("noteStatus").textContent="Guardado solo en este navegador.";}
-    catch(e){get("noteStatus").textContent="No se pudo guardar aquí. Exporta tus notas.";}
-  });
-  get("exportNote").addEventListener("click",function(){
-    const list=Object.values(drafts).sort((a,b)=>a.day-b.day);
-    if(!list.length){get("noteStatus").textContent="Todavía no hay notas guardadas.";return}
-    const blob=new Blob([JSON.stringify(list,null,2)],{type:"application/json"});
-    const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="bitacora-viaje-2026.json";a.click();
-    setTimeout(()=>URL.revokeObjectURL(url),1000);
-    get("noteStatus").textContent="Archivo exportado. Para compartir notas, publícalas en GitHub.";
-  });
-  get("share").addEventListener("click",async function(){
-    const url=location.href;
+  $("share").addEventListener("click",async()=>{
+    const url=location.href.split("#")[0];
     if(navigator.share){try{await navigator.share({title:"Viaje en moto 2026",url});return}catch(e){if(e.name==="AbortError")return}}
-    try{await navigator.clipboard.writeText(url);this.textContent="Enlace copiado";setTimeout(()=>this.textContent="Compartir",2000)}
-    catch(e){window.prompt("Copiar enlace:",url)}
+    try{await navigator.clipboard.writeText(url);$("share").textContent="Copiado";setTimeout(()=>$("share").textContent="Compartir",1700)}
+    catch(e){prompt("Enlace:",url)}
   });
-  const coords=trip.mapPoints;
-  if(window.L){
-    const map=L.map("mapView",{scrollWheelZoom:false}).setView([-39.7,-72],7);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
-    const segments=[
+  // Mapa autocontenido: funciona sin Leaflet ni otros archivos o servicios externos.
+  function drawMap(){
+    const all=trip.mapPoints;
+    const svgNS="http://www.w3.org/2000/svg";
+    const doc=document.createElementNS(svgNS,"svg");
+    doc.setAttribute("viewBox","0 0 650 625");
+    doc.setAttribute("role","img");
+    doc.setAttribute("aria-label","Esquema geográfico de Santiago, Los Ángeles, Malalcahuello, Pucón, Puerto Fuy, San Martín de los Andes, Bariloche, Futrono, Temuco y Bulnes");
+    const lon=lng=>52+(lng+74)*145;
+    const lat=v=>27+(-v-33.2)*72;
+    const el=(tag,attrs={},content=null)=>{
+      const n=document.createElementNS(svgNS,tag);
+      for(const [key,val] of Object.entries(attrs))n.setAttribute(key,String(val));
+      if(content!=null)n.textContent=content;
+      return n;
+    };
+    doc.appendChild(el("rect",{width:650,height:625,fill:"#f0f4f7"}));
+    [-34,-36,-38,-40,-41].forEach(deg=>{
+      const y=lat(deg);doc.appendChild(el("line",{x1:36,y1:y,x2:625,y2:y,stroke:"#dce4eb","stroke-width":1,"stroke-dasharray":"4 7"}));
+      doc.appendChild(el("text",{x:10,y:y+4,fill:"#8593a1","font-size":12},Math.abs(deg)+"°S"));
+    });
+    const routes=[
       ["Santiago","Los Ángeles","Malalcahuello","Pucón","Puerto Fuy"],
       ["Puerto Pirehueico","Hua Hum","San Martín de los Andes","Villa La Angostura","Bariloche"],
       ["Bariloche","Villa La Angostura","Cardenal Samoré","Entre Lagos","Osorno","Futrono","Temuco","Bulnes","Santiago"]
     ];
-    segments.forEach(names=>L.polyline(names.map(n=>coords[n]).filter(Boolean).map(p=>[p.lat,p.lon]),{color:"#215977",weight:2,dashArray:"6 7",opacity:.7}).addTo(map));
-    L.polyline([[coords["Puerto Fuy"].lat,coords["Puerto Fuy"].lon],[coords["Puerto Pirehueico"].lat,coords["Puerto Pirehueico"].lon]],{color:"#1592be",weight:3,dashArray:"2 6"}).bindPopup("Barcaza Pirehueico").addTo(map);
-    const bounds=[];
-    trip.stays.forEach(s=>{const p=coords[s.name];if(!p)return;bounds.push([p.lat,p.lon]);L.circleMarker([p.lat,p.lon],{radius:6,color:"#215977",fillColor:"#fff",fillOpacity:1,weight:2}).bindPopup("<b>"+safe(s.name)+"</b><br>"+safe(s.dates)+" · "+safe(s.nights)+" noche(s)").addTo(map)});
-    if(bounds.length)map.fitBounds(bounds,{padding:[25,25]});
-  }else get("mapView").textContent="No se pudo cargar el mapa. El calendario y las jornadas siguen disponibles.";
+    routes.forEach((r,i)=>{
+      const points=r.filter(s=>all[s]).map(s=>lon(all[s].lon)+","+lat(all[s].lat)).join(" ");
+      doc.appendChild(el("polyline",{points,fill:"none",stroke:i===1?"#865bb1":"#25668a","stroke-width":3,"stroke-dasharray":"7 6","stroke-linecap":"round","stroke-linejoin":"round"}));
+    });
+    doc.appendChild(el("line",{x1:lon(all["Puerto Fuy"].lon),y1:lat(all["Puerto Fuy"].lat),x2:lon(all["Puerto Pirehueico"].lon),y2:lat(all["Puerto Pirehueico"].lat),stroke:"#1593bf","stroke-width":4,"stroke-dasharray":"2 5"}));
+    doc.appendChild(el("text",{x:55,y:603,"font-size":12,fill:"#718195"},"CHILE"));
+    doc.appendChild(el("text",{x:465,y:603,"font-size":12,fill:"#718195"},"ARGENTINA"));
+    const offsets={
+      "Santiago":[-15,-13],"Los Ángeles":[-110,1],"Malalcahuello":[10,-5],"Pucón":[10,-10],
+      "Puerto Fuy":[-110,14],"San Martín de los Andes":[10,-15],
+      "Bariloche":[10,17],"Futrono":[-76,16],"Temuco":[12,-6],"Bulnes":[10,-7]
+    };
+    const nameLabel={"Los Ángeles":"Los Ángeles","Malalcahuello":"Malalcahuello","San Martín de los Andes":"San Martín","Puerto Fuy":"Puerto Fuy"};
+    const points=["Santiago","Los Ángeles","Malalcahuello","Pucón","Puerto Fuy","San Martín de los Andes","Bariloche","Futrono","Temuco","Bulnes"];
+    points.forEach((s,i)=>{
+      const p=all[s];if(!p)return;const x=lon(p.lon),y=lat(p.lat),o=offsets[s]||[10,-5];
+      const grp=el("g",{"aria-label":s});
+      grp.appendChild(el("circle",{cx:x,cy:y,r:6,fill:i===5||i===6?"#7c58ad":"#175e8e",stroke:"#fff","stroke-width":2}));
+      grp.appendChild(el("text",{x:x+o[0],y:y+o[1],"font-size":12,"font-weight":650,fill:"#263746"},nameLabel[s]||s));
+      grp.appendChild(el("title",{},s));
+      doc.appendChild(grp);
+    });
+    $("route-visual").replaceChildren(doc);
+    const legs=[
+      ["25 nov. · Santiago → Los Ángeles",["Santiago, Chile","Los Ángeles, Chile"]],
+      ["26–28 nov. · Los Ángeles → Puerto Fuy",["Los Ángeles, Chile","Malalcahuello, Chile","Pucón, Chile","Puerto Fuy, Chile"]],
+      ["29 nov. · Hua Hum → San Martín",["Puerto Pirehueico, Chile","Paso Hua Hum, Argentina","San Martín de los Andes, Argentina"]],
+      ["1 dic. · San Martín → Bariloche",["San Martín de los Andes, Argentina","Villa La Angostura, Argentina","Bariloche, Argentina"]],
+      ["4 dic. · Bariloche → Futrono",["Bariloche, Argentina","Paso Cardenal Samoré, Chile","Futrono, Chile"]],
+      ["8–11 dic. · Futrono → Santiago",["Futrono, Chile","Temuco, Chile","Bulnes, Chile","Santiago, Chile"]]
+    ];
+    $("map-links").innerHTML=legs.map(([label,stops])=>"<div class='link-row'><b>"+html(label)+"</b><a target='_blank' rel='noopener noreferrer' href='"+html(mapDirections(stops))+"'>Abrir ↗</a></div>").join("");
+  }
+  drawMap();
+  // Las notas guardadas aquí no son públicas: pueden exportarse.
+  const entries=(window.TRIP_JOURNAL||[]).filter(e=>e&&e.text);
+  const safePhoto=photo=>{try{const u=new URL(photo);return ["https:","http:"].includes(u.protocol)?u.href:null}catch{return null}};
+  $("entries").innerHTML=entries.length?entries.map(e=>"<div class='entry'><b>"+html(e.title||"Nota")+" · Día "+html(e.day)+"</b><p>"+html(e.text)+"</p>"+(safePhoto(e.photo)?"<img src='"+html(safePhoto(e.photo))+"' alt='Foto de viaje' loading='lazy'>":"")+"</div>").join(""):"<p>Sin entradas publicadas.</p>";
+  $("note-day").innerHTML=trip.days.map(d=>"<option value='"+Number(d.day)+"'>"+html(d.date)+" · "+html(d.title)+"</option>").join("");
+  const storeKey="travesia-lagos-journal-drafts-v1";
+  let drafts={};try{drafts=JSON.parse(localStorage.getItem(storeKey)||"{}")||{}}catch(e){drafts={}}
+  const fields={day:$("note-day"),title:$("note-title"),text:$("note-text"),photo:$("note-photo")};
+  function loadDraft(){const d=drafts[fields.day.value]||{};fields.title.value=d.title||"";fields.text.value=d.text||"";fields.photo.value=d.photo||""}
+  fields.day.addEventListener("change",loadDraft);loadDraft();
+  $("save-note").addEventListener("click",()=>{
+    if(!fields.text.value.trim()){$("note-status").textContent="Escribe una nota primero.";return}
+    drafts[fields.day.value]={day:Number(fields.day.value),title:fields.title.value.trim()||"Notas",text:fields.text.value.trim(),photo:safePhoto(fields.photo.value)||""};
+    try{localStorage.setItem(storeKey,JSON.stringify(drafts));$("note-status").textContent="Guardado solo en este dispositivo."}catch(e){$("note-status").textContent="No se pudo guardar. Exporta el archivo."}
+  });
+  $("export-note").addEventListener("click",()=>{
+    const list=Object.values(drafts).sort((a,b)=>a.day-b.day);
+    if(!list.length){$("note-status").textContent="No hay notas guardadas.";return}
+    const blob=new Blob([JSON.stringify(list,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob);
+    const a=document.createElement("a");a.href=url;a.download="bitacora-2026.json";a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    $("note-status").textContent="Notas exportadas. Para hacerlas públicas, subirlas al repositorio.";
+  });
 })();
 </script>
 </body>
