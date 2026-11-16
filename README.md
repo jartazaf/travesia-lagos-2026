@@ -16,7 +16,6 @@ Sitio personal para consultar y compartir el calendario, itinerario, mapa y bit�
 - `route-data.js`: datos de las 17 jornadas, bases, alojamientos, fechas, visitas y estado.
 - `journal-data.js`: entradas de la bitácora que verán todas las personas que visiten la web.
 - `index.html`: interfaz y funcionamiento del sitio.
-- `site-extras.js`: archivo legado no utilizado por el sitio actual.
 
 Un cambio subido a `main` vuelve a publicar el sitio mediante GitHub Pages.
 
