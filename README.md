@@ -7,7 +7,7 @@ Plan de viaje del **25 de noviembre al 11 de diciembre de 2026**, por Chile y Ar
 ## Información disponible
 
 - **Recorrido:** 17 jornadas en un selector de días, con ficha individual, kilómetros estimados, visitas, advertencias, navegación entre jornadas y enlaces a Google Maps. La banda superior permite saltar a etapas principales.
-- **Alojamientos:** 9 bases, fechas y reservas. La barra de 16 noches permite acceder directamente a cada alojamiento; las tarjetas despliegan el detalle.
+- **Alojamientos:** 8 bases, fechas y reservas. La barra de 16 noches permite acceder directamente a cada alojamiento; las tarjetas despliegan el detalle.
 - **Clima:** pronóstico por base y fecha de estadía con temperatura mínima/máxima, probabilidad máxima de lluvia, viento máximo y ráfagas. Muestra «Sin pronóstico todavía» cuando las fechas están fuera de los 16 días disponibles.
 - Interfaz responsive para móvil y computador, sin mapa embebido ni bitácora. Se preservan las rutas viales y las advertencias de ripio.
 
@@ -22,7 +22,9 @@ Plan de viaje del **25 de noviembre al 11 de diciembre de 2026**, por Chile y Ar
 
 ## Condiciones por confirmar
 
-- El paso Hua Hum tiene sectores de ripio, incompatibles con el criterio original de solo pavimento.
+- El 28 de noviembre la ruta sale directamente de Pucón a San Martín de los Andes por Curarrehue, Paso Mamuil Malal (Tromen), Junín de los Andes. La RP60 argentina tiene ripio y obras de pavimentación; verificar condiciones y posibles cortes. Se elimina Puerto Fuy y la barcaza Hua Hum. San Martín queda del 28 de noviembre al 1 de diciembre (3 noches).
+  - [Complejo Mamuil Malal — Pasos Fronterizos de Chile](https://www.pasosfronterizos.gov.cl/complejos-fronterizos/araucania/paso-mamuil-malal/)
+  - [Estado de rutas — Vialidad Neuquén](https://w2.dpvneuquen.gov.ar/ultimoparte.php)
 - Debe verificarse pavimento hasta el punto elegido en Lago Maihue.
 - El recorrido Bariloche → Futrono del 4 de diciembre podría superar 350 km.
 - Las estadías todavía no están reservadas. Objetivo de habitación privada: máximo US$45 por noche.
