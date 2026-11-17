@@ -6,7 +6,7 @@ const coords={
  "Los Ángeles":[-37.4697,-72.3537],
  "Malalcahuello":[-38.465,-71.57],
  "Pucón":[-39.2797,-71.9754],
- "Puerto Fuy":[-39.8729,-71.8901],
+
  "San Martín de los Andes":[-40.157,-71.353],
  "Bariloche":[-41.134,-71.310],
  "Futrono":[-40.1318,-72.395],
