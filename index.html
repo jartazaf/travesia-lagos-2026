@@ -65,7 +65,7 @@ main{padding-top:20px;padding-bottom:24px}
 .switch-icon{display:grid;place-items:center;width:32px;height:32px;flex:none;border-radius:9px;background:#f1f6f2}
 .switch.active .switch-icon{background:var(--pine);color:#fff}
 .switch-icon svg{width:17px;height:17px;stroke-width:1.85}
-.switch-name{font-size:12px;font-weight:780}
+.switch-name{font-size:12px;font-weight:780}.nav-emoji{font-size:15px;vertical-align:-1px;margin-right:2px}
 .switch-count{margin-left:auto;font-size:10px;font-weight:760;color:#96aaa0}
 .switch.active .switch-count{color:var(--aqua-dark)}
 .side-meta{margin:12px 4px 0;border-top:1px solid var(--line-soft);padding:15px 9px 2px;color:#879b91;display:grid;gap:5px}
@@ -171,9 +171,16 @@ main{padding-top:20px;padding-bottom:24px}
 .weather-stay-top span{font-size:12px;font-weight:810;color:var(--pine)}
 .weather-stay-top small{font-size:10px;color:#809588;text-align:right}
 .weather-days{display:grid;gap:7px;margin-top:12px}
-.weather-day{display:grid;grid-template-columns:minmax(105px,1fr) 90px 100px minmax(135px,1fr);gap:12px;align-items:center;padding:10px 12px;border:1px solid #e2ece3;border-radius:9px;background:#f7fbf8}
+.weather-day{display:grid;grid-template-columns:minmax(158px,1.35fr) minmax(95px,.75fr) minmax(86px,.8fr) minmax(115px,1fr);gap:12px;align-items:center;padding:12px;border:1px solid #e2ece3;border-radius:11px;background:#f7fbf8;min-width:0}
+.weather-condition{display:flex;align-items:center;gap:11px;min-width:0}
+.weather-emoji{width:45px;height:45px;display:grid;place-items:center;flex:none;border-radius:12px;background:#e7f3ec;font-size:27px;line-height:1;font-family:system-ui,"Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.weather-condition .weather-when{min-width:0}
+.weather-temps{white-space:nowrap;display:flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums}
+.weather-rain,.weather-wind{display:flex;align-items:center;gap:5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.weather-rain small{font-size:9px;color:#899e92;font-weight:650}
+.weather-wind{white-space:normal;line-height:1.35}
 .weather-when{font-size:11px;font-weight:780;color:#285846}
-.weather-when small{display:block;font-size:10px;font-weight:500;color:#849b8d}
+.weather-when small{display:block;font-size:10px;font-weight:600;color:#718a7c;line-height:1.3;margin-top:2px}
 .weather-day strong{font-size:12px;font-weight:830;color:var(--pine)}
 .weather-day span{font-size:10px;color:#618273}
 .weather-day.unavailable{display:flex;justify-content:space-between;color:#899d91}
@@ -239,9 +246,14 @@ footer a{font-weight:750}
  .panel-foot{padding:12px 16px}
  .weather-stay{padding:14px 15px}
  .weather-help{padding:11px 16px}
- .weather-day{grid-template-columns:1fr auto;gap:5px 10px}
+ .weather-day{grid-template-columns:minmax(0,1fr) auto;gap:9px 10px;padding:11px}
+ .weather-condition{grid-column:1;grid-row:1 / span 2;align-self:center}
+ .weather-emoji{width:41px;height:41px;font-size:25px;border-radius:10px}
+ .weather-temps{grid-column:2;grid-row:1;justify-content:flex-end;font-size:12px}
+ .weather-rain{grid-column:1;grid-row:3;justify-self:start}
+ .weather-wind{grid-column:2;grid-row:3;justify-self:end;text-align:right}
+ .weather-day.unavailable{grid-template-columns:1fr auto}
  .weather-day strong{text-align:right}
- .weather-day span:last-child{text-align:right}
 }
 @media(max-width:520px){
  .wrap{width:calc(100% - 22px)}
@@ -298,9 +310,9 @@ footer a{font-weight:750}
   <aside class="sidebar" aria-label="Secciones del viaje">
    <span class="side-caption">Itinerario</span>
    <div class="switches" role="tablist" aria-label="Información del viaje">
-    <button type="button" class="switch active" id="tab-days" role="tab" aria-selected="true" aria-controls="days-panel"><span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="19" r="2"/><circle cx="19" cy="5" r="2"/><path d="M5 17v-6a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v6"/></svg></span><span class="switch-name">Recorrido</span><span class="switch-count">17</span></button>
-    <button type="button" class="switch" id="tab-stays" role="tab" aria-selected="false" aria-controls="stays-panel" tabindex="-1"><span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l9-6 9 6v11H3Z"/><path d="M9 20v-7h6v7"/></svg></span><span class="switch-name">Alojamientos</span><span class="switch-count">9</span></button>
-    <button type="button" class="switch" id="tab-weather" role="tab" aria-selected="false" aria-controls="weather-panel" tabindex="-1"><span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 17H6a4 4 0 0 1-.5-8A6 6 0 0 1 17 8a4.5 4.5 0 0 1 1 9h-2"/><path d="M10 21h4m-5-3h6"/></svg></span><span class="switch-name">Clima</span><span class="switch-count">↗</span></button>
+    <button type="button" class="switch active" id="tab-days" role="tab" aria-selected="true" aria-controls="days-panel"><span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="19" r="2"/><circle cx="19" cy="5" r="2"/><path d="M5 17v-6a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v6"/></svg></span><span class="switch-name"><span class="nav-emoji" aria-hidden="true">🏍️</span> Recorrido</span><span class="switch-count">17</span></button>
+    <button type="button" class="switch" id="tab-stays" role="tab" aria-selected="false" aria-controls="stays-panel" tabindex="-1"><span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l9-6 9 6v11H3Z"/><path d="M9 20v-7h6v7"/></svg></span><span class="switch-name"><span class="nav-emoji" aria-hidden="true">🛏️</span> Alojamientos</span><span class="switch-count">9</span></button>
+    <button type="button" class="switch" id="tab-weather" role="tab" aria-selected="false" aria-controls="weather-panel" tabindex="-1"><span class="switch-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 17H6a4 4 0 0 1-.5-8A6 6 0 0 1 17 8a4.5 4.5 0 0 1 1 9h-2"/><path d="M10 21h4m-5-3h6"/></svg></span><span class="switch-name"><span class="nav-emoji" aria-hidden="true">🌤️</span> Clima</span><span class="switch-count">↗</span></button>
    </div>
    <div class="side-meta"><strong>25 nov. — 11 dic.</strong><small>Selecciona un día para revisar la ruta, paradas y condiciones. Los enlaces abren Google Maps.</small></div>
   </aside>
@@ -318,8 +330,8 @@ footer a{font-weight:750}
     <div class="panel-foot">Objetivo: habitación privada por hasta US$45 por noche. Reservas pendientes.</div>
    </section>
    <section class="panel" id="weather-panel" role="tabpanel" aria-labelledby="tab-weather" hidden>
-    <div class="panel-top"><div class="panel-heading"><span class="panel-label">Pronósticos</span><h2>Clima por destino</h2></div><button type="button" id="weather-reload" class="weather-reload">Actualizar</button></div>
-    <p class="weather-help">Temperatura mínima y máxima · Probabilidad de lluvia · Viento y ráfagas.</p>
+    <div class="panel-top"><div class="panel-heading"><span class="panel-label">Pronósticos</span><h2><span aria-hidden="true">🌤️</span> Clima por destino</h2></div><button type="button" id="weather-reload" class="weather-reload">Actualizar</button></div>
+    <p class="weather-help">🌡️ Mín. / máx. &nbsp;·&nbsp; 💧 Probabilidad de lluvia &nbsp;·&nbsp; 💨 Viento / ráfagas máximas (km/h)</p>
     <div id="weather-list" aria-live="polite"><p class="weather-pending">Selecciona Clima para consultar los pronósticos.</p></div>
     <div class="panel-foot"><span id="weather-updated">Datos disponibles cuando las fechas estén dentro de los próximos 16 días.</span> Fuente: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0).</div>
    </section>
@@ -399,7 +411,7 @@ function setDay(day){
  "<h3 class='focus-title'>"+esc(d.title)+"</h3>"+
  "<p class='focus-summary'>"+esc(d.desc||"")+"</p>"+
  "<div class='focus-metrics'><div class='focus-metric'><span>Distancia estimada</span><strong>"+esc(d.km||"—")+"</strong></div><div class='focus-metric'><span>País</span><strong>"+esc(d.country)+"</strong></div></div>"+
- "<h4 class='focus-section-title'>Paradas y lugares</h4><div class='visits'>"+stops.map(v=>"<span class='visit'>"+esc(v)+"</span>").join("")+"</div>"+
+ "<h4 class='focus-section-title'><span aria-hidden='true'>📍</span> Paradas y lugares</h4><div class='visits'>"+stops.map(v=>"<span class='visit'>"+esc(v)+"</span>").join("")+"</div>"+
  (d.flag?"<p class='alert'><strong>Revisar tramo:</strong> condiciones de ruta o frontera pendientes.</p>":"")+
  (d.optionalStop?"<p class='alert'><strong>"+esc(d.optionalStop.name)+" (opcional):</strong> "+esc(d.optionalStop.warning)+"</p>":"")+
  (ferry?"<p class='alert'><strong>Barcaza:</strong> el tramo Puerto Fuy–Puerto Pirehueico no está incluido en el enlace terrestre.</p>":"")+
@@ -448,6 +460,6 @@ $("share").addEventListener("click",async()=>{
 });
 })();
 </script>
-<script src="./weather.js?v=1"></script>
+<script src="./weather.js?v=2"></script>
 </body>
 </html>
