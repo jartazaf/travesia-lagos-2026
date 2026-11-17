@@ -94,7 +94,12 @@ main{padding-top:20px;padding-bottom:24px}
 .day-opt.argentina .day-opt-dot{background:#2dbbaf}
 .day-opt.risky .day-opt-dot{background:#dcaa43}
 .day-opt.active .day-opt-dot{background:#c8fff1}
-.day-focus{min-width:0;padding:23px 26px 18px;display:flex;flex-direction:column}
+.day-focus{min-width:0;padding:23px 26px 18px;display:flex;flex-direction:column;touch-action:pan-y;transition:transform .2s ease,opacity .2s ease;will-change:transform}
+.day-focus.is-dragging{transition:none;user-select:none;-webkit-user-select:none}
+.day-focus.swipe-in-next{animation:card-in-next .26s cubic-bezier(.18,.76,.32,1) both}
+.day-focus.swipe-in-prev{animation:card-in-prev .26s cubic-bezier(.18,.76,.32,1) both}
+@keyframes card-in-next{from{transform:translateX(24px);opacity:.35}to{transform:translateX(0);opacity:1}}
+@keyframes card-in-prev{from{transform:translateX(-24px);opacity:.35}to{transform:translateX(0);opacity:1}}
 .day-focus:empty:before{content:"Selecciona un día";color:var(--muted)}
 .focus-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .focus-day{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:#0a8d81;font-weight:850}
@@ -282,7 +287,8 @@ footer a{font-weight:750}
 }
 @media(prefers-reduced-motion:reduce){
  html{scroll-behavior:auto}
- .stop:after,.switch,.day-opt,.stay-card{transition:none}
+ .stop:after,.switch,.day-opt,.stay-card,.day-focus{transition:none}
+ .day-focus.swipe-in-next,.day-focus.swipe-in-prev{animation:none}
 }
 </style>
 </head>
@@ -321,7 +327,7 @@ footer a{font-weight:750}
    <section class="panel" id="days-panel" role="tabpanel" aria-labelledby="tab-days">
     <div class="panel-top"><div class="panel-heading"><span class="panel-label">Calendario</span><h2>Recorrido diario</h2></div><span class="panel-meta">17 días · 2 países</span></div>
     <div class="day-workspace"><div class="day-rail" id="day-list" aria-label="Seleccionar día del viaje"></div><article class="day-focus" id="day-detail" aria-live="polite"></article></div>
-    <div class="panel-foot">Kilómetros aproximados. Revisar estado de rutas antes de salir. La barcaza Puerto Fuy–Puerto Pirehueico no aparece en el enlace terrestre.</div>
+    <div class="panel-foot"><span aria-hidden="true">↔️</span> Desliza la ficha a los lados para cambiar de día. Kilómetros aproximados; revisa rutas y cruces antes de salir. La barcaza Puerto Fuy–Puerto Pirehueico no aparece en el enlace terrestre.</div>
    </section>
    <section class="panel" id="stays-panel" role="tabpanel" aria-labelledby="tab-stays" hidden>
     <div class="panel-top"><div class="panel-heading"><span class="panel-label">Estadías</span><h2>Alojamientos</h2></div><span class="panel-meta">9 bases · 16 noches</span></div>
@@ -434,6 +440,57 @@ const dateToDay=date=>{
 setDay(dateToDay(getToday()));
 $("day-list").addEventListener("click",e=>{const b=e.target.closest("button[data-day]");if(b)setDay(b.dataset.day);});
 $("day-detail").addEventListener("click",e=>{const b=e.target.closest("button[data-move]");if(b)setDay(selectedDay+Number(b.dataset.move));});
+// Swipe horizontal de fichas. El desplazamiento vertical nativo permanece habilitado.
+const focus=$("day-detail");
+let gesture=null;
+function resetGesture(){
+  focus.classList.remove("is-dragging");
+  focus.style.transform="";
+  focus.style.opacity="";
+  gesture=null;
+}
+function centerActiveDay(){
+  const rail=$("day-list");
+  const active=rail.querySelector(".day-opt.active");
+  if(!active)return;
+  if(rail.scrollWidth>rail.clientWidth+8){
+    const r=rail.getBoundingClientRect(), a=active.getBoundingClientRect();
+    rail.scrollTo({left:Math.max(0,rail.scrollLeft+(a.left+a.width/2)-(r.left+r.width/2)),behavior:"smooth"});
+  }else{
+    active.scrollIntoView({block:"nearest",inline:"nearest",behavior:"smooth"});
+  }
+}
+focus.addEventListener("pointerdown",e=>{
+  if(!e.isPrimary||(e.pointerType==="mouse"&&e.button!==0)||e.target.closest("a,button"))return;
+  gesture={id:e.pointerId,x:e.clientX,y:e.clientY,axis:null};
+  try{focus.setPointerCapture(e.pointerId)}catch(_){}
+});
+focus.addEventListener("pointermove",e=>{
+  if(!gesture||e.pointerId!==gesture.id)return;
+  const dx=e.clientX-gesture.x,dy=e.clientY-gesture.y;
+  if(!gesture.axis&&Math.max(Math.abs(dx),Math.abs(dy))>12)gesture.axis=Math.abs(dx)>Math.abs(dy)*1.25?"horizontal":"vertical";
+  if(gesture.axis!=="horizontal")return;
+  if(e.pointerType==="mouse")e.preventDefault();
+  focus.classList.add("is-dragging");
+  focus.style.transform="translate3d("+Math.max(-80,Math.min(80,dx*.42))+"px,0,0)";
+  focus.style.opacity=String(Math.max(.75,1-Math.abs(dx)/700));
+});
+focus.addEventListener("pointerup",e=>{
+  if(!gesture||e.pointerId!==gesture.id)return;
+  const dx=e.clientX-gesture.x,dy=e.clientY-gesture.y;
+  const next=selectedDay+(dx<0?1:-1);
+  const advance=gesture.axis==="horizontal"&&Math.abs(dx)>=60&&Math.abs(dx)>Math.abs(dy)*1.25&&next>=1&&next<=trip.days.length;
+  resetGesture();
+  if(!advance)return;
+  setDay(next);
+  centerActiveDay();
+  focus.classList.remove("swipe-in-next","swipe-in-prev");
+  void focus.offsetWidth;
+  focus.classList.add(dx<0?"swipe-in-next":"swipe-in-prev");
+});
+focus.addEventListener("pointercancel",resetGesture);
+focus.addEventListener("lostpointercapture",()=>{if(gesture)resetGesture();});
+focus.addEventListener("animationend",()=>focus.classList.remove("swipe-in-next","swipe-in-prev"));
 $("route-strip").addEventListener("click",e=>{
  const b=e.target.closest("button[data-jump]");if(!b)return;
  selectTab("days",true);setDay(b.dataset.jump);
