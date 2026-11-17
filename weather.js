@@ -45,6 +45,18 @@ function weatherText(code){
   if([95,96,99].includes(code))return "Tormenta";
   return "Variable";
 }
+function weatherIcon(code){
+  if(code===0)return "☀️";
+  if([1,2].includes(code))return "🌤️";
+  if(code===3)return "☁️";
+  if([45,48].includes(code))return "🌫️";
+  if([51,53,55,56,57,80,81,82].includes(code))return "🌦️";
+  if([61,63,65,66,67].includes(code))return "🌧️";
+  if([71,73,75,85,86].includes(code))return "🌨️";
+  if(code===77)return "❄️";
+  if([95,96,99].includes(code))return "⛈️";
+  return "🌡️";
+}
 function displayDay(date){const [y,m,d]=date.split("-");return Number(d)+" "+(m==="11"?"nov.":"dic.")}
 function number(v){return typeof v==="number"&&Number.isFinite(v)?Math.round(v):null}
 function metric(v,suffix){const n=number(v);return n===null?"—":n+suffix}
@@ -54,29 +66,30 @@ function renderPeriod(stay,dates,forecast){
   const dayData=forecast?.daily||{};
   const items=dates.map(date=>{
     const at=(dayData.time||[]).indexOf(date);
-    if(at<0)return "<div class='weather-day unavailable'><span>"+escapeHTML(displayDay(date))+"</span><span>Sin pronóstico todavía</span></div>";
+    if(at<0)return "<div class='weather-day unavailable'><span>🗓️ "+escapeHTML(displayDay(date))+"</span><span>Sin pronóstico todavía</span></div>";
     const tempMax=dayData.temperature_2m_max?.[at],tempMin=dayData.temperature_2m_min?.[at];
     const precip=dayData.precipitation_probability_max?.[at];
     const wind=dayData.wind_speed_10m_max?.[at];
     const gust=dayData.wind_gusts_10m_max?.[at];
     const condition=weatherText(dayData.weather_code?.[at]);
-    return "<div class='weather-day'><div class='weather-when'>"+escapeHTML(displayDay(date))+"<small>"+escapeHTML(condition)+"</small></div>"+
-    "<strong>"+escapeHTML(metric(tempMin,"°"))+" / "+escapeHTML(metric(tempMax,"°"))+"</strong>"+
-    "<span title='Probabilidad máxima de precipitación'>Lluvia "+escapeHTML(metric(precip,"%"))+"</span>"+
-    "<span title='Viento máximo y ráfagas máximas'>Viento "+escapeHTML(metric(wind,""))+" / "+escapeHTML(metric(gust,""))+" km/h</span></div>";
+    return "<div class='weather-day'>"+
+    "<div class='weather-condition'><span class='weather-emoji' aria-hidden='true'>"+weatherIcon(dayData.weather_code?.[at])+"</span><div class='weather-when'>"+escapeHTML(displayDay(date))+"<small>"+escapeHTML(condition)+"</small></div></div>"+
+    "<strong class='weather-temps'><span aria-hidden='true'>🌡️</span> "+escapeHTML(metric(tempMin,"°"))+" / "+escapeHTML(metric(tempMax,"°"))+"</strong>"+
+    "<span class='weather-rain' title='Probabilidad máxima de precipitación'><span aria-hidden='true'>💧</span> "+escapeHTML(metric(precip,"%"))+" <small>lluvia</small></span>"+
+    "<span class='weather-wind' title='Viento máximo / ráfagas máximas'><span aria-hidden='true'>💨</span> "+escapeHTML(metric(wind,""))+" / "+escapeHTML(metric(gust,""))+" km/h</span></div>";
   }).join("");
   const known=dates.filter(date=>(dayData.time||[]).includes(date)).length;
   const state=known===dates.length?"Pronóstico disponible":known>0?"Pronóstico parcial":"Aún sin pronóstico";
-  setEntry(idx,"<div class='weather-stay-top'><span>"+escapeHTML(stay.name)+"</span><small>"+escapeHTML(stay.dates)+" · "+state+"</small></div><div class='weather-days'>"+items+"</div>");
+  setEntry(idx,"<div class='weather-stay-top'><span><span aria-hidden='true'>📍</span> "+escapeHTML(stay.name)+"</span><small>"+escapeHTML(stay.dates)+" · "+state+"</small></div><div class='weather-days'>"+items+"</div>");
 }
 async function loadOne(stay,idx,dates,today){
   if(dates.every(date=>date<today)){
-    setEntry(idx,"<div class='weather-stay-top'><span>"+escapeHTML(stay.name)+"</span><small>"+escapeHTML(stay.dates)+" · Fechas pasadas</small></div>");
+    setEntry(idx,"<div class='weather-stay-top'><span><span aria-hidden='true'>📍</span> "+escapeHTML(stay.name)+"</span><small>"+escapeHTML(stay.dates)+" · Fechas pasadas</small></div>");
     return;
   }
   const latest=toISO(new Date(Date.parse(today+"T00:00:00Z")+15*msDay));
   if(dates.every(date=>date>latest)){
-    setEntry(idx,"<div class='weather-stay-top'><span>"+escapeHTML(stay.name)+"</span><small>"+escapeHTML(stay.dates)+"</small></div><div class='weather-pending'>Sin pronóstico todavía. Disponible al acercarse la fecha (máximo 16 días).</div>");
+    setEntry(idx,"<div class='weather-stay-top'><span>"+escapeHTML(stay.name)+"</span><small>"+escapeHTML(stay.dates)+"</small></div><div class='weather-pending'>🗓️ Sin pronóstico todavía. Disponible al acercarse la fecha (máximo 16 días).</div>");
     return;
   }
   const geo=coords[stay.name];
