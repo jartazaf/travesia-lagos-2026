@@ -10,7 +10,7 @@ window.TRIP_DATA = {
     {name:'Malalcahuello',country:'Chile',dates:'26–27 nov.',nights:1,desc:'Curacautín, araucarias y miradores de Malalcahuello.'},
     {name:'Pucón',country:'Chile',dates:'27–28 nov.',nights:1,desc:'Lago Villarrica y Pucón. Una noche.'},
 
-    {name:'San Martín de los Andes',country:'Argentina',dates:'28 nov.–1 dic.',nights:3,desc:'Lago Lácar, costanera y miradores de San Martín. Tres noches.'},
+    {name:'San Martín de los Andes',country:'Argentina',dates:'28 nov.–1 dic.',nights:3,desc:'Lago Lácar, costanera y miradores de San Martín. Tres noches.',lodging:{name:'Habitación Privada en Cabaña Compartida',provider:'Airbnb',host:'Juan Carlos',area:'Barrio Lácar (zona aproximada)',url:'https://www.airbnb.mx/rooms/597123081635727419'}},
     {name:'Bariloche',country:'Argentina',dates:'1–4 dic.',nights:3,desc:'Circuito Chico, Villa La Angostura, Puerto Manzano y lago Nahuel Huapi. Villa Traful queda como excursión opcional con ripio.'},
     {name:'Futrono',country:'Chile',dates:'4–8 dic.',nights:4,desc:'Base para Lago Ranco, Llifén, Maihue y excursión a Puyehue.'},
     {name:'Temuco',country:'Chile',dates:'8–9 dic.',nights:1,desc:'Noche de tránsito para llegar a Bulnes el 9 de diciembre.'},
@@ -43,7 +43,7 @@ const DETALLES_BASES = [
   {llegada:"26 nov.",salida:"27 nov.",visitas:"Curacautín, Lonquimay, araucarias",estado:"Por reservar"},
   {llegada:"27 nov.",salida:"28 nov.",visitas:"Villarrica, lago Villarrica, Pucón",estado:"Por reservar"},
 
-  {llegada:"28 nov.",salida:"1 dic.",visitas:"Lago Lácar, costanera, miradores, San Martín",estado:"Por reservar"},
+  {llegada:"28 nov.",salida:"1 dic.",visitas:"Lago Lácar, costanera, miradores, San Martín",estado:"Reservado"},
   {llegada:"1 dic.",salida:"4 dic.",visitas:"Siete Lagos, Villa La Angostura, Puerto Manzano, Circuito Chico, Bariloche; Villa Traful (opcional con ripio)",estado:"Por reservar"},
   {llegada:"4 dic.",salida:"8 dic.",visitas:"Lago Ranco, Llifén, Maihue, Puyehue, Aguas Calientes",estado:"Por reservar"},
   {llegada:"8 dic.",salida:"9 dic.",visitas:"Ruta 5, Temuco, descanso",estado:"Por reservar"},
