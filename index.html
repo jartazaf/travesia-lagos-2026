@@ -158,6 +158,8 @@ main{padding-top:20px;padding-bottom:24px}
 .stay-expanded p{font-size:11px;line-height:1.6;margin:0;color:#637b6e}
 .stay-expanded p b{color:#2e5746}
 .stay-expanded .action{justify-self:start}
+.stay-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.stay-booked{color:#0b8064;font-weight:850}
 .notice{margin-top:15px;border:1px solid #ebdfc1;border-radius:11px;background:#fffaf0}
 .notice summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 15px;color:#775a27;font-size:11px;font-weight:780}
 .notice summary::-webkit-details-marker{display:none}
@@ -309,7 +311,7 @@ footer a{font-weight:750}
 
  <details class="notice">
   <summary><span><span class="notice-symbol" aria-hidden="true">!</span>Tramos por confirmar</span><span class="expand" aria-hidden="true">+</span></summary>
-  <p><b>Mamuil Malal:</b> la RP60 argentina tiene ripio y obras; verificar apertura y cortes. <b>Lago Maihue:</b> verificar pavimento. <b>Bariloche → Futrono:</b> confirmar distancia y tiempos de frontera. <b>Villa Traful:</b> desvío opcional con ripio en la RP65. Alojamiento aún sin reservar.</p>
+  <p><b>Mamuil Malal:</b> la RP60 argentina tiene ripio y obras; verificar apertura y cortes. <b>Lago Maihue:</b> verificar pavimento. <b>Bariloche → Futrono:</b> confirmar distancia y tiempos de frontera. <b>Villa Traful:</b> desvío opcional con ripio en la RP65. San Martín de los Andes reservado; los demás alojamientos siguen pendientes.</p>
  </details>
 
  <div class="section-area">
@@ -497,10 +499,18 @@ $("route-strip").addEventListener("click",e=>{
 $("stay-strip").innerHTML=trip.stays.map((s,i)=>"<button type='button' class='stay-seg"+(s.country==="Argentina"?" argentina":"")+"' style='flex-grow:"+Number(s.nights||1)+"' data-stay='"+i+"' data-num='"+(i+1)+"' title='"+esc(s.name+" · "+s.nights+" noche(s)")+"' aria-label='Ver "+esc(s.name)+", "+esc(s.nights)+" noches'></button>").join("");
 $("stay-list").innerHTML=trip.stays.map((s,i)=>{
  const search=mapSearch(s.name+", "+s.country);
+ const lodging=s.lodging;
+ const status=esc(s.estado||"Por reservar");
+ const bookingDetails=lodging
+  ? "<p><b>Alojamiento:</b> "+esc(lodging.name)+"</p><p><b>Anfitrión:</b> "+esc(lodging.host)+" · "+esc(lodging.area)+"</p>"
+  : "";
+ const bookingLink=lodging&&lodging.url
+  ? "<a class='action' href='"+esc(lodging.url)+"' rel='noopener noreferrer' target='_blank'>Ver alojamiento en "+esc(lodging.provider||"Airbnb")+" "+arrow+"</a>"
+  : "";
  return "<details class='stay-card' data-stay-card='"+i+"'><summary><div class='stay-card-top'><span class='stay-index'>Base "+String(i+1).padStart(2,"0")+" · "+esc(s.country)+"</span><span class='stay-dates'>"+esc(s.llegada)+" — "+esc(s.salida)+"</span></div>"+
  "<h3>"+esc(s.name)+"</h3><div class='stay-details-line'><span>"+esc(s.dates)+"</span><span class='stay-night'>"+esc(s.nights)+" "+(Number(s.nights)===1?"noche":"noches")+"</span></div>"+
- "<span class='stay-card-preview'>"+esc(s.visitas)+"</span><div class='stay-card-bottom'><span>"+esc(s.estado||"Por reservar")+"</span><span class='stay-open'>Ver detalles ↗</span></div></summary>"+
- "<div class='stay-expanded'><p><b>Visitas:</b> "+esc(s.visitas)+"</p><p><b>Reserva:</b> "+esc(s.estado||"Por reservar")+"</p><a class='action secondary' href='"+esc(search)+"' rel='noopener noreferrer' target='_blank'>Google Maps "+arrow+"</a></div></details>";
+ "<span class='stay-card-preview'>"+esc(s.visitas)+"</span><div class='stay-card-bottom'><span"+(s.estado==="Reservado"?" class='stay-booked'":"")+">"+(s.estado==="Reservado"?"✓ ":"")+status+"</span><span class='stay-open'>Ver detalles ↗</span></div></summary>"+
+ "<div class='stay-expanded'><p><b>Visitas:</b> "+esc(s.visitas)+"</p><p><b>Reserva:</b> "+status+"</p>"+bookingDetails+"<div class='stay-actions'>"+bookingLink+"<a class='action secondary' href='"+esc(search)+"' rel='noopener noreferrer' target='_blank'>Google Maps "+arrow+"</a></div></div></details>";
 }).join("");
 $("stay-strip").addEventListener("click",e=>{
  const b=e.target.closest("button[data-stay]");if(!b)return;
