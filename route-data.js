@@ -10,7 +10,7 @@ window.TRIP_DATA = {
     {name:'Malalcahuello',country:'Chile',dates:'26–27 nov.',nights:1,desc:'Curacautín, araucarias y miradores de Malalcahuello.'},
     {name:'Pucón',country:'Chile',dates:'27–28 nov.',nights:1,desc:'Lago Villarrica y Pucón. Una noche.'},
 
-    {name:'San Martín de los Andes',country:'Argentina',dates:'28 nov.–1 dic.',nights:3,desc:'Lago Lácar, costanera y miradores de San Martín. Tres noches.',lodging:{name:'Habitación Privada en Cabaña Compartida',provider:'Airbnb',host:'Juan Carlos',area:'Barrio Lácar (zona aproximada)',url:'https://www.airbnb.mx/rooms/597123081635727419'}},
+    {name:'San Martín de los Andes',country:'Argentina',dates:'28 nov.–1 dic.',nights:3,desc:'Lago Lácar, costanera y miradores de San Martín. Tres noches.',lodging:{name:'Habitación Privada en Cabaña Compartida',provider:'Airbnb',host:'Juan Carlos',area:'San Martín de los Andes',checkIn:'Sáb. 28 nov., desde las 12:00',checkOut:'Mar. 1 dic., antes de las 10:00',url:'https://www.airbnb.mx/rooms/597123081635727419'}},
     {name:'Bariloche',country:'Argentina',dates:'1–4 dic.',nights:3,desc:'Circuito Chico, Villa La Angostura, Puerto Manzano y lago Nahuel Huapi. Villa Traful queda como excursión opcional con ripio.'},
     {name:'Futrono',country:'Chile',dates:'4–8 dic.',nights:4,desc:'Base para Lago Ranco, Llifén, Maihue y excursión a Puyehue.'},
     {name:'Temuco',country:'Chile',dates:'8–9 dic.',nights:1,desc:'Noche de tránsito para llegar a Bulnes el 9 de diciembre.'},
