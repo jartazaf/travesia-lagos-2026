@@ -27,7 +27,7 @@ Plan de viaje del **25 de noviembre al 11 de diciembre de 2026**, por Chile y Ar
   - [Estado de rutas — Vialidad Neuquén](https://w2.dpvneuquen.gov.ar/ultimoparte.php)
 - Debe verificarse pavimento hasta el punto elegido en Lago Maihue.
 - El recorrido Bariloche → Futrono del 4 de diciembre podría superar 350 km.
-- Las estadías todavía no están reservadas. Objetivo de habitación privada: máximo US$45 por noche.
+- **San Martín de los Andes: reservado del 28 de noviembre al 1 de diciembre (3 noches)** en [Habitación Privada en Cabaña Compartida, Airbnb](https://www.airbnb.mx/rooms/597123081635727419), anfitrión Juan Carlos. Los demás alojamientos siguen pendientes; objetivo: habitación privada de máximo US$45 por noche.
 
 Los kilómetros son estimaciones de planificación. Los enlaces a Google Maps no certifican el estado del pavimento.
 
