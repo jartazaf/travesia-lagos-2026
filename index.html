@@ -502,7 +502,7 @@ $("stay-list").innerHTML=trip.stays.map((s,i)=>{
  const lodging=s.lodging;
  const status=esc(s.estado||"Por reservar");
  const bookingDetails=lodging
-  ? "<p><b>Alojamiento:</b> "+esc(lodging.name)+"</p><p><b>Anfitrión:</b> "+esc(lodging.host)+" · "+esc(lodging.area)+"</p>"
+  ? "<p><b>Alojamiento:</b> "+esc(lodging.name)+"</p><p><b>Anfitrión:</b> "+esc(lodging.host)+" · "+esc(lodging.area)+"</p>"+(lodging.checkIn?"<p><b>Entrada:</b> "+esc(lodging.checkIn)+"</p>":"")+(lodging.checkOut?"<p><b>Salida:</b> "+esc(lodging.checkOut)+"</p>":"")
   : "";
  const bookingLink=lodging&&lodging.url
   ? "<a class='action' href='"+esc(lodging.url)+"' rel='noopener noreferrer' target='_blank'>Ver alojamiento en "+esc(lodging.provider||"Airbnb")+" "+arrow+"</a>"
