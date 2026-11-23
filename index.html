@@ -498,11 +498,18 @@ $("route-strip").addEventListener("click",e=>{
 });
 $("stay-strip").innerHTML=trip.stays.map((s,i)=>"<button type='button' class='stay-seg"+(s.country==="Argentina"?" argentina":"")+"' style='flex-grow:"+Number(s.nights||1)+"' data-stay='"+i+"' data-num='"+(i+1)+"' title='"+esc(s.name+" · "+s.nights+" noche(s)")+"' aria-label='Ver "+esc(s.name)+", "+esc(s.nights)+" noches'></button>").join("");
 $("stay-list").innerHTML=trip.stays.map((s,i)=>{
- const search=mapSearch(s.name+", "+s.country);
  const lodging=s.lodging;
+ const search=mapSearch(lodging&&lodging.address?lodging.address:s.name+", "+s.country);
  const status=esc(s.estado||"Por reservar");
  const bookingDetails=lodging
-  ? "<p><b>Alojamiento:</b> "+esc(lodging.name)+"</p><p><b>Anfitrión:</b> "+esc(lodging.host)+" · "+esc(lodging.area)+"</p>"+(lodging.checkIn?"<p><b>Entrada:</b> "+esc(lodging.checkIn)+"</p>":"")+(lodging.checkOut?"<p><b>Salida:</b> "+esc(lodging.checkOut)+"</p>":"")
+  ? "<p><b>Alojamiento:</b> "+esc(lodging.name)+"</p>"
+    +"<p><b>Plataforma:</b> "+esc(lodging.provider||"Airbnb")+"</p>"
+    +"<p><b>Anfitrión:</b> "+esc(lodging.host)+"</p>"
+    +(lodging.guests?"<p><b>Viajeros:</b> "+esc(lodging.guests)+"</p>":"")
+    +(lodging.address?"<p><b>Dirección:</b> "+esc(lodging.address)+"</p>":"")
+    +(lodging.phone?"<p><b>Teléfono:</b> <a href='tel:"+esc(lodging.phone.replace(/[^+\d]/g,""))+"'>"+esc(lodging.phone)+"</a></p>":"")
+    +(lodging.checkIn?"<p><b>Entrada:</b> "+esc(lodging.checkIn)+"</p>":"")
+    +(lodging.checkOut?"<p><b>Salida:</b> "+esc(lodging.checkOut)+"</p>":"")
   : "";
  const bookingLink=lodging&&lodging.url
   ? "<a class='action' href='"+esc(lodging.url)+"' rel='noopener noreferrer' target='_blank'>Ver alojamiento en "+esc(lodging.provider||"Airbnb")+" "+arrow+"</a>"
